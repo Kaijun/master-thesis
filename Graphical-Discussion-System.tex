@@ -1,5 +1,5 @@
-\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
-\documentclass[english, BCOR=6mm, twoside=false, open=right]{tudscrreprt}
+% \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+\documentclass[english, BCOR=6mm, twoside=true, open=right]{tudscrreprt}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{selinput}
@@ -29,11 +29,17 @@
 % \hfill
 % \clearpage
 
-\TUDoption{abstract}{section,multiple}
+% Multiple Abstract
+% \TUDoption{abstract}{section,multiple}
+% \begin{abstract}[pagestyle=empty.tudheadings]
+% \input{Content/01_Abstract_De}
+% \nextabstract[english]
+% \input{Content/01_Abstract_En}
+% \end{abstract}
+
+\TUDoption{abstract}{section}
 \begin{abstract}[pagestyle=empty.tudheadings]
-\input{Content/01_Abstract_De}
-\nextabstract[english]
-\input{Content/01_Abstract_En}
+\input{Content/01_Abstract}
 \end{abstract}
 
 \tableofcontents
