@@ -21,21 +21,9 @@
 \input{Content/00_Title}
 \maketitle
 
-\confirmation
-
-% empty page
-% \clearpage
-% \thispagestyle{empty}
-% \hfill
-% \clearpage
-
-% Multiple Abstract
-% \TUDoption{abstract}{section,multiple}
-% \begin{abstract}[pagestyle=empty.tudheadings]
-% \input{Content/01_Abstract_De}
-% \nextabstract[english]
-% \input{Content/01_Abstract_En}
-% \end{abstract}
+% \confirmation
+\confirmation[pagestyle=empty.tudheadings]
+\cleardoublepage
 
 \TUDoption{abstract}{section}
 \begin{abstract}[pagestyle=empty.tudheadings]
@@ -44,70 +32,83 @@
 
 \tableofcontents
 
-% \chapter{Einleitung}
+
+\chapter{Introduction}
+\section{Motivation}
+\input{Content/11_Motivation}
+\section{Goals and Research Questions}
+\input{Content/12_GoalsQuestions}
+\section{Thesis Outline}
+\input{Content/13_Outline}
+
+
+\chapter{Related Works}
+\section{Online Q.A. Systems}
 % \input{Content/11_Motivation}
-% \input{Content/12_Vorgehen}
-% \input{Content/13_Notation}\label{Notation}
-% % \input{Content/13_Notation}
-%
-% \chapter{Near-Optimale MDS-Codes}\label{nearMDS}
-% \input{Content/201_Metric}
-% \section{Regenerating Codes (RC)}
-% \input{Content/211_ParameterVonRC}\label{Parameter}
-% \input{Content/212_MBRundMSR}\label{MBRuMSR}
-% \input{Content/213_FunktionaleRegenerating}\label{FunkRe}
-% \input{Content/214_ExakteRegenerating}\label{ExaRe}
-% \input{Content/215_VergleichFRCundERC}
-% \section{Locally Repairable Codes (LRC)}
-% \input{Content/22_LRC}
-% \section{Zusammenhang zwischen RC und LRC}
-% \input{Content/23_Zusammenhang}
-%
-% \chapter{Implementierung eines Algorithmus für exaktes Regenerating}\label{Implementierung}
-% \input{Content/31_Implementierung}
-% \input{Content/32_ImplementierungMBR}\label{ImplementierungMBR}
-% \input{Content/321_NachrichtenmatrixMBR}\label{NachrichtMBR}
-% \input{Content/322_NichtSysGeneratormatrixMBR}\label{NSGeMaMBR}
-% \input{Content/323_SysGeneratormatrixMBR}\label{SGeMaMBR}
-% \input{Content/324_KodierungMBR}\label{KodierungMBR}
-% \input{Content/325_RegeneratingMBR}
-% \input{Content/326_DekodierungMBR}
-% \input{Content/33_ImplementierungMSR}\label{ImplementierungMSR}
-% \input{Content/331_NachrichtenmatrixMSR}
-% \input{Content/332_NichtSysGeneratormatrixMSR}\label{NSGeMaMSR}
-% \input{Content/333_SysGeneratormatrixMSR}
-% \input{Content/334_KodierungMSR}\label{KodierungMSR}
-% \input{Content/335_RegeneratingMSR}
-% \input{Content/336_DekodierungMSR}
-%
-%
-% \chapter{Experimentelle Untersuchung und Auswertung}\label{Untersuchung}
-% \input{Content/41_Dimensionierung}
-% \section{Auswertung an Speicher, Reparatur-Bandbreite und Disk-I/O}
-% \input{Content/421_Speicher}
-% \input{Content/422_Reparatur-Bandbreite}
-% \input{Content/423_Disk-IO}
-% \input{Content/43_Vergleich}
-%
-% \chapter{Schluss}\label{Schluss}
-% \input{Content/51_ProblemBesonderheit}
-% \input{Content/52_WeiterfuehrendeBetrachtungen}
-%
-% \newpage
-% \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
-% \listoffigures
-%
-% \newpage
-% \addcontentsline{toc}{chapter}{Tabellenverzeichnis}
-% \listoftables
-%
-% \newpage
-% \addcontentsline{toc}{chapter}{Glossar}
-% \printglossary
-%
-% \newpage
-% \addcontentsline{toc}{chapter}{Literaturverzeichnis}
-% \bibliographystyle{ieeetr}
-% \bibliography{references}
+
+
+\chapter{State of the Art}
+\section{Modern Web Development}
+% Seperation of Frontend and Backend,
+\section{Real-Time Communication}
+% Realtime technologies, comparation of techs
+\section{Efficient Server Side}
+% Tech stack: Nodejs (Why Node, comparation), MongoDB(Why, comparaion), Express?
+
+
+\chapter{Aims and Objectives}
+\section{Basic Functionality}
+% class, question, answer, up-down vote, fav, accept answer, wihtdraw of question/answers
+\section{High Interativity}
+%  notification, drawing graphical(undo, redo), quote,
+% Auto Ordering of Questions / Answers
+\section{Design and Prototyping}
+
+
+\chapter{Conception}
+\section{Architecture}
+ % MVC, Seperation of Frontend and Backend, Test Driven?
+\section{Data Model}
+\section{Graphical Data Convertion}
+% Fabric.js
+\section{Real-Time Demand}
+% Fabric.js
+
+
+\chapter{Implementation}
+\section{Server}
+% Webservice(API) design, JWT for Auth, Websocket Dispatcher, Resource Listening
+\section{Client}
+% Building Tool, Compile Workflow, Whiteboard, Socket, React?
+\section{Difficulties and open Questions}
+
+
+\chapter{Evaluation}
+\section{Usability}
+% 10 Usability Heuristics for User Interface Design, SUS(System Usability Scale)
+\section{System Overload}
+
+
+\chapter{Conclusion and Future Work}
+\section{Conclusion}
+\section{Future Work}
+
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{Glossary}
+\printglossary
+
+\newpage
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{ieeetr}
+\bibliography{references}
 
 \end{document}
