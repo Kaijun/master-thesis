@@ -32,8 +32,9 @@
 
 \tableofcontents
 
-
+% Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{Introduction}
+\input{Content/10_Introduction}
 \section{Motivation}
 \input{Content/11_Motivation}
 \section{Goals and Research Questions}
@@ -42,11 +43,17 @@
 \input{Content/13_Outline}
 
 
-\chapter{Related Works}
+% Focus on Discuss System, Graphical, Web-Socket(实时传输)
+\chapter{Background and Related Works}
+% Start With QA system, why nessary -
 \section{Online Q.A. Systems}
+% Educational QA System
+\section{MooCs}
+% System with Canvas? Socket?
 % \input{Content/11_Motivation}
 
 
+% Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{State of the Art}
 \section{Modern Web Development}
 % Seperation of Frontend and Backend,
@@ -55,29 +62,32 @@
 \section{Efficient Server Side}
 % Tech stack: Nodejs (Why Node, comparation), MongoDB(Why, comparaion), Express?
 
-
+% Conception和aims一起, 现有的conception变成Imp? 这样真的好嘛
 \chapter{Aims and Objectives}
 \section{Basic Functionality}
 % class, question, answer, up-down vote, fav, accept answer, wihtdraw of question/answers
 \section{High Interativity}
 %  notification, drawing graphical(undo, redo), quote,
 % Auto Ordering of Questions / Answers
+% Sidebar notifications!
 \section{Design and Prototyping}
 
 
 \chapter{Conception}
-\section{Architecture}
- % MVC, Seperation of Frontend and Backend, Test Driven?
 \section{Data Model}
+% Cousrse Code generator!
 \section{Graphical Data Convertion}
-% Fabric.js
+% problem Quote - then Fabric.js
+% Problem How to combine rich text editor with graphical?
 \section{Real-Time Demand}
-% Fabric.js
-
+% problem - then dispatcher
+% Roles?
 
 \chapter{Implementation}
+\section{Architecture}
+ % MVC, Seperation of Frontend and Backend, Test Driven?
 \section{Server}
-% Webservice(API) design, JWT for Auth, Websocket Dispatcher, Resource Listening
+% Webservice(API) design, JWT for Auth, Websocket Dispatcher, Resource Listening, Docker?
 \section{Client}
 % Building Tool, Compile Workflow, Whiteboard, Socket, React?
 \section{Difficulties and open Questions}
