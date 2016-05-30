@@ -1,4 +1,5 @@
 % \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}
+% \documentclass[english, BCOR=6mm, twoside=true, open=right, fontsize=12]{tudscrreprt}
 \documentclass[english, BCOR=6mm, twoside=true, open=right]{tudscrreprt}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -12,6 +13,8 @@
 \usepackage{amssymb}
 \usepackage{threeparttable}
 \usepackage{glossaries}
+
+% \renewcommand{\baselinestretch}{1.15}
 
 \makeglossaries
 \input{Content/02_Glossar}
@@ -45,21 +48,27 @@
 
 % Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{Background and Related Works}
+\input{Content/20_RelatedWorks}
 % Start With QA system, why nessary -
 \section{Online Q.A. Systems}
+\input{Content/21_QASystems}
 % Educational QA System
 \section{MooCs}
+\input{Content/22_MooCs}
 % System with Canvas? Socket?
-% \input{Content/11_Motivation}
 
 
 % Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{State of the Art}
+\input{Content/30_Techs}
 \section{Modern Web Development}
+\input{Content/31_WebDev}
 % Seperation of Frontend and Backend,
 \section{Real-Time Communication}
+\input{Content/32_RTC}
 % Realtime technologies, comparation of techs
 \section{Efficient Server Side}
+\input{Content/33_Server}
 % Tech stack: Nodejs (Why Node, comparation), MongoDB(Why, comparaion), Express?
 
 % Conception和aims一起, 现有的conception变成Imp? 这样真的好嘛
