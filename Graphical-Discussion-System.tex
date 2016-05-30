@@ -17,11 +17,11 @@
 % \renewcommand{\baselinestretch}{1.15}
 
 \makeglossaries
-\input{Content/02_Glossar}
+\input{Content/00/Glossar}
 
 \begin{document}
 
-\input{Content/00_Title}
+\input{Content/00/Title}
 \maketitle
 
 % \confirmation
@@ -30,46 +30,51 @@
 
 \TUDoption{abstract}{section}
 \begin{abstract}[pagestyle=empty.tudheadings]
-\input{Content/01_Abstract}
+\input{Content/00/Abstract}
 \end{abstract}
 
 \tableofcontents
 
 % Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{Introduction}
-\input{Content/10_Introduction}
+\input{Content/01/Introduction}
 \section{Motivation}
-\input{Content/11_Motivation}
+\input{Content/01/Motivation}
 \section{Goals and Research Questions}
-\input{Content/12_GoalsQuestions}
+\input{Content/01/GoalsQuestions}
 \section{Thesis Outline}
-\input{Content/13_Outline}
+\input{Content/01/Outline}
 
 
 % Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{Background and Related Works}
-\input{Content/20_RelatedWorks}
+% \input{Content/20_RelatedWorks}
 % Start With QA system, why nessary -
 \section{Online Q.A. Systems}
-\input{Content/21_QASystems}
+% \input{Content/21_QASystems}
 % Educational QA System
 \section{MooCs}
-\input{Content/22_MooCs}
+% \input{Content/22_MooCs}
 % System with Canvas? Socket?
 
 
 % Focus on Discuss System, Graphical, Web-Socket(实时传输)
 \chapter{State of the Art}
-\input{Content/30_Techs}
+\input{Content/03/Techs}
 \section{Modern Web Development}
-\input{Content/31_WebDev}
+\input{Content/03/ModernWebDev}
 % Seperation of Frontend and Backend,
+\section{Graphics on the Web}
+\input{Content/03/Graphics}
+% Graphics technologies on the web
 \section{Real-Time Communication}
-\input{Content/32_RTC}
+\input{Content/03/RTC}
 % Realtime technologies, comparation of techs
 \section{Efficient Server Side}
-\input{Content/33_Server}
+\input{Content/03/Server}
 % Tech stack: Nodejs (Why Node, comparation), MongoDB(Why, comparaion), Express?
+
+% At least to 32-35
 
 % Conception和aims一起, 现有的conception变成Imp? 这样真的好嘛
 \chapter{Aims and Objectives}
@@ -83,6 +88,7 @@
 
 
 \chapter{Conception}
+\section{RESTful API Definitions}
 \section{Data Model}
 % Cousrse Code generator!
 \section{Graphical Data Convertion}
@@ -112,6 +118,7 @@
 \section{Conclusion}
 \section{Future Work}
 
+% At least to 72
 
 \newpage
 \addcontentsline{toc}{chapter}{List of Figures}
