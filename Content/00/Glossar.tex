@@ -1,11 +1,22 @@
-% pdflatex glossaries.tex
-% makeglossaries glossaries
-% pdflatex glossaries.tex
+% pdflatex Glossar.tex
+% makeglossaries Glossar
+% pdflatex Glossar.tex
+\newglossaryentry{Ajax}{
+  name=Ajax,
+  description={(also AJAX; short for asynchronous JavaScript and XML) is a set of web development techniques using many web technologies on the client-side to create asynchronous Web applications.},
+}
 
-\newglossaryentry{computer}
-{
-  name=computer,
-  description={is a programmable machine that receives input,
-               stores and manipulates data, and provides
-               output in a useful format}
+\newglossaryentry{SPA}{
+  name=Single-page application,
+  description={A single-page application (SPA) is a web application or web site that fits on a single web page with the goal of providing a more fluid user experience similar to a desktop application.},
+}
+
+\newglossaryentry{SEO}{
+  name=Search engine optimization,
+  description={is the process of affecting the visibility of a website or a web page in a web search engine's unpaid results.},
+}
+
+\newglossaryentry{API}{
+  name=Application programming interface,
+  description={ is a set of routines, protocols, and tools for building software and applications.},
 }
