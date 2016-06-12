@@ -1,8 +1,7 @@
-\section{Seperation of Frontend and Backend}
+% \section{Seperation of Frontend and Backend}
 
 
 \subsection{Evolution}
-% http://blog.jobbole.com/65509/
 With the increasing complexity of a web app and high demand of agile development, people are always thinking about how to improve patterns of the workflow in web development as well as the architecture of a web app. To achieve better scalability, maintainability and ubiquity of a web app, the architecture of an entire web app has been envolving in the past several years .
 
 \subsubsection{Early Age}
@@ -37,7 +36,7 @@ The architecture in Web 2.0 generation is presented in figure \ref{fig:3.2}.
 
 By using Ajax, the client has the ability to fetching data stream asynchronously, after which the client will consume the data and render it into the specific section of view. Usability was dramatically improved, because the entired view represented to users will not be refreshed and the front-end is able to process and render data in its own intension, which means more flexible control of the consumption of data.
 
-\subsection{Single Page App}
+\subsubsection{Single Page App}
 
 With the evolution of web technologies and promotion of these technologies in modern browswers by brower vendors, a new web development model called \gls{SPA} was proposed and caught the developers' eye. The back-end is no more responsible for rendering and view controling, it only take charge of providing services for the front-end.
 
@@ -61,33 +60,36 @@ But more responsibility in front-end means more complexity. How to reduce the co
 
 In general, the architecture is componentized and layered into template, controller and model. Each component is isolated and has its own view as well as correlated logics. Front-end frameworks like EmberJS, AngularJS, ReactJS are providing such a approach and development pattern for developers to build modern web apps. With this approach, a giant and complex front-end app is broken up into fine grained components, therefore, components are easy to reuse if the components are well abstrated in a proper way. In addition, the maintaince of each component is also effortless.
 
-In summarize, a single-page app has a lot of benefits:
 
+\subsubsection{Trade-off}
+In summarize, a single-page app has a lot of benefits:
 \begin{enumerate}
 \item
-Rational seperation of works from front-end and back-end: client takes charge of view rendering and data representation, as well as slight data processing if needed; the server focus on providing services of the core logics, persistance of data, and also computational tasks.
+\textbf{Rational seperation of works from front-end and back-end}: client takes charge of view rendering and data representation, as well as slight data processing if needed; the server focus on providing services of the core logics, persistance of data, and also computational tasks.
 \item
-High interactivity and user experience in client side: asynchronous data fetching and view rendering implies no more need of hard reloading the page which user is viewing and the current states of the page could also be preserved.
+\textbf{High interactivity and user experience in client side}: asynchronous data fetching and view rendering implies no more need of hard reloading the page which user is viewing and the current states of the page could also be preserved.
 \item
-Efficiency in server side: rendering tasks are stripped off from server side.
+\textbf{Efficiency in server side}: rendering tasks are stripped off from server side.
 \item
-Ubiquity: with the seperation of services provided by server side, not only the web browser but also other clients in other platforms such as Android, iOS apps are able to access and comsume the services.
+\textbf{Ubiquity}: with the seperation of services provided by server side, not only the web browser but also other clients in other platforms such as Android, iOS apps are able to access and comsume the services.
 \end{enumerate}
 
 But SPA also has its deficiencies:
 
 \begin{enumerate}
 \item
-\gls{SEO} unfriendly: because the page are not directly rendered by server side, and the web crawlers are not able to run JavaScript codes like a browser does, the site could not be crawled properly under normal circumstances. So if SEO results really matter for the app, SPA is obviously not the best choice.
+\textbf{\gls{SEO} unfriendly}: because the page are not directly rendered by server side, and the web crawlers are not able to run JavaScript codes like a browser does, the site could not be crawled properly under normal circumstances. So if SEO results really matter for the app, SPA is obviously not the best choice.
 \item
-Excessive http connections: all the data is acquired from different services through diversed \gls{API}s, thus multiple HTTP connections are established and performed parallelly, whose initial time of connections for partial data could be much more than a single connection in the traditional way. So it's highly needed to merge the services and find a balance between data model complexity and time consumption.
+\textbf{Excessive http connections}: all the data is acquired from different services through diversed \gls{API}s, thus multiple HTTP connections are established and performed parallelly, whose initial time of connections for partial data could be much more than a single connection in the traditional way. So it's highly needed to merge the services and find a balance between data model complexity and time consumption.
 \end{enumerate}
 
 
-\section{RESTful Interface}
+\subsection{RESTful Interface}
 
 
 
-\section{Continuous Integration}
+\subsection{Continuous Integration}
 
-\section{Operating-system-level virtualization}
+
+
+\subsection{Operating-system-level virtualization}
