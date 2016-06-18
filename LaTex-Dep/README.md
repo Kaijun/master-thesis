@@ -6,4 +6,5 @@
  - Add `/usr/texbin` to PATH Env `export PATH=$PATH:/usr/texbin`
 
 ##### Install TUD-KOMA-Script
- - sh tudscr_v2.04d_full_install.sh
+ - chmod +x tudscr_v2.04d_full_install.sh
+ - ./tudscr_v2.04d_full_install.sh
