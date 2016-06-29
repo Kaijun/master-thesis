@@ -1,0 +1,16 @@
+{
+  "language": "en",
+  "ignoreWordsList": [],
+  "mistakeTypeToStatus": {
+    "Spelling": "Error",
+    "Passive Voice": "Information",
+    "Complex Expression": "Information",
+    "Hyphen Required": "Warning"
+  },
+  "languageIDs": [
+    "markdown",
+    "text",
+    "latex"
+  ],
+  "ignoreRegExp": []
+}

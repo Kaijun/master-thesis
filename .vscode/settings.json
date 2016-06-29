@@ -1,0 +1,18 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  // The compiler to use
+  "latexCompile.compiler": "docker exec latex pdflatex",
+  "latexCompile.mainFile": "Graphical-Discussion-System.tex",
+
+
+  // Configure glob patterns for excluding files and folders.
+  "files.exclude": {
+    "**/*.aux": true,
+    "**/*.glo": true,
+    "**/*.ist": true,
+    "**/*.lof": true,
+    "**/*.lot": true,
+    "**/*.toc": true,
+    "**/*.vscodeLog": true
+  },
+}

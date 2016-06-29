@@ -1,3 +1,127 @@
+
+
+In this section, definition of data model will be concepted. 
+
 % table design
 % vote table
-% code generator
+% code generator 
+
+\subsection{Data Model}
+
+
+% Belonging!!! User->Course->Question->Answers!
+
+
+% Table for parameters in each data domain!
+
+\subsection{RESTful API Definitions}
+
+As mentioned in section xxx, RESTful architecture is a an excellent technical choice for data transferring. Because of its simplicity and clear semantic description of HTTP methods comparing to other protocols such like SOAP, it will dramatically simplify and clarify our data transmission services. 
+
+\subsubsection{ Mapping of HTTP methods to data model behaviour }
+The data model defined above can directly map to the definition of resources in RESTful. The HTTP methods on each resource domain can also represent the data model behaviours, \textbf{\textit{User Model}} is taken as an example: 
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Method        & \multicolumn{4}{l}{Operation of data model collection }                            \\ \midrule
+GET           & \multicolumn{4}{l}{Query and return a specific user from user model collection.}   \\
+POST          & \multicolumn{4}{l}{Create a new user entry and insert into user model collection.} \\
+PUT           & \multicolumn{4}{l}{Update a specific user in user model collection.}               \\
+DELETE        & \multicolumn{4}{l}{Delete a specific user in user model collection.}               \\ \bottomrule
+\end{tabular}
+\caption{HTTP methods on User resource}
+\label{http-method-on-user-resource}
+\end{table}
+
+In table \ref{http-method-on-user-resource}, resource entry in persistent storage can be executed with specific action while requesting resource URI through different HTTP methods. A semantic description of connection between \gls{CRUD} and HTTP methods on RESTful will make the data transmission services more understandable and unified.
+
+\subsubsection{ General RESTful API Definitions }
+
+Requesting a specific resource can only succeed through its \gls{URI}, through which the client and server-side could connect to each other actually. Therefore, a definition of APIs which describes \gls{URI} of the resources and its functional responsibility should be proposed in the first place.
+
+
+\begin{enumerate}
+\item
+\textbf{User Authentication}: 
+
+\begin{table}[!htbp]
+\centering
+\caption{User Auth APIs}
+\label{user-auth-apis}
+\begin{tabular}{@{}lll@{}}
+\toprule
+URI          & Method & Description                                                  \\ \midrule
+/auth/login  & POST   & User login action, request with login information.           \\
+/auth/signup & POST   & User signup action, request with registration information.   \\
+/auth/logout & GET    & User logout action, no data submission is needed.            \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\item
+\textbf{Courses}: 
+
+\begin{table}[!htbp]
+\centering
+\caption{Course Resource APIs}
+\label{course-resource-apis}
+\begin{tabular}{@{}lll@{}}
+\toprule
+URI                & Method         & Description                                                                \\ \midrule
+/courses           & GET/POST       & request the whole collection of courses; create course with data submmited \\
+/courses/:courseId & GET/PUT/DELETE & request, modify, remove specific entry of course                           \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+\item
+\textbf{Questions}: 
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!htbp]
+\centering
+\caption{Question Resource APIs}
+\label{question-resource-apis}
+\begin{tabular}{@{}lll@{}}
+\toprule
+URI                                   & Method         & Description                                                                                                                                                 \\ \midrule
+/questions?courseId=:id               & GET/POST       & \begin{tabular}[c]{@{}l@{}}request the whole collection of questions belonging to a specific course;\\ create question under a specific course\end{tabular} \\
+/questions/:questionId                & GET/PUT/DELETE & request, modify, remove specific entry of question                                                                                                          \\
+/questions/:questionId/vote/:voteType & POST           & vote actions with different vote types applied to specific question                                                                                         \\ \bottomrule
+\end{tabular}
+\end{table}
+
+
+\item
+\textbf{Answers}: 
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[!htbp]
+\centering
+\caption{Answer Resource APIs}
+\label{answer-resources-apis}
+\begin{tabular}{@{}lll@{}}
+\toprule
+URI                                 & Method         & Description                                                                                                                                                 \\ \midrule
+/answers?questionId=:id             & GET/POST       & \begin{tabular}[c]{@{}l@{}}request the whole collection of answers belonging to a specific question;\\ create answer under a specific question\end{tabular} \\
+/answers/: answersId                & GET/PUT/DELETE & request, modify, remove specific entry of answer                                                                                                            \\
+/answers/: answersId/vote/:voteType & POST           & vote actions with different vote types applied to specific answer                                                                                           \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\end{enumerate}
+
+
+
+
+
+% how communication.
+% best practise.
+
+% problem in real world
+% Table of the restful api
+
+\subsection{WebSocket Definitions}
+
