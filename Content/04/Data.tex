@@ -22,14 +22,14 @@ As mentioned in section xxx, RESTful architecture is a an excellent technical ch
 The data model defined above can directly map to the definition of resources in RESTful. The HTTP methods on each resource domain can also represent the data model behaviours, \textbf{\textit{User Model}} is taken as an example: 
 \begin{table}[!htbp]
 \centering
-\begin{tabular}{@{}lllll@{}}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
 \toprule
-Method        & \multicolumn{4}{l}{Operation of data model collection }                            \\ \midrule
-GET           & \multicolumn{4}{l}{Query and return a specific user from user model collection.}   \\
-POST          & \multicolumn{4}{l}{Create a new user entry and insert into user model collection.} \\
-PUT           & \multicolumn{4}{l}{Update a specific user in user model collection.}               \\
-DELETE        & \multicolumn{4}{l}{Delete a specific user in user model collection.}               \\ \bottomrule
-\end{tabular}
+Method        & {Operation of data model collection }                            \\ \midrule
+GET           & {Query and return a specific user from user model collection.}   \\
+POST          & {Create a new user entry and insert into user model collection.} \\
+PUT           & {Update a specific user in user model collection.}               \\
+DELETE        & {Delete a specific user in user model collection.}               \\ \bottomrule
+\end{tabularx}
 \caption{HTTP methods on User resource}
 \label{http-method-on-user-resource}
 \end{table}
@@ -43,79 +43,77 @@ Requesting a specific resource can only succeed through its \gls{URI}, through w
 
 \begin{enumerate}
 \item
-\textbf{User Authentication}: 
+\textbf{User Authentication}: the major actions of user authentication include signup, login, logout. To protect the user information, POST method which doesn't expose information via the URL, is highly recommended.
 
 \begin{table}[!htbp]
 \centering
-\caption{User Auth APIs}
-\label{user-auth-apis}
-\begin{tabular}{@{}lll@{}}
+\begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
 URI          & Method & Description                                                  \\ \midrule
 /auth/login  & POST   & User login action, request with login information.           \\
 /auth/signup & POST   & User signup action, request with registration information.   \\
 /auth/logout & GET    & User logout action, no data submission is needed.            \\ \bottomrule
-\end{tabular}
+\end{tabularx}
+\caption{User Auth APIs}
+\label{user-auth-apis}
 \end{table}
 
 \item
-\textbf{Courses}: 
+\textbf{Courses}: acquisition of courses and new submission of a course is possible. In addition, \gls{CRUD} operations on a specific course should also be achieved through a single URI with various HTTP methods.
 
 \begin{table}[!htbp]
 \centering
+
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+\toprule
+URI                 & Method         & Description                                                                                                          \\ \midrule
+/courses            & GET/POST       & request the whole collection of courses; create course with data submitted \\
+/courses/:courseId & GET/PUT/DELETE & request, modify, remove specific entry of course                                                                     \\ \bottomrule
+\end{tabularx}
 \caption{Course Resource APIs}
 \label{course-resource-apis}
-\begin{tabular}{@{}lll@{}}
-\toprule
-URI                & Method         & Description                                                                \\ \midrule
-/courses           & GET/POST       & request the whole collection of courses; create course with data submmited \\
-/courses/:courseId & GET/PUT/DELETE & request, modify, remove specific entry of course                           \\ \bottomrule
-\end{tabular}
 \end{table}
 
-
 \item
-\textbf{Questions}: 
-
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
+\textbf{Questions}: in a real sense question resource is attached to course resource. According to the best practise of RESTful API design [reference xxx], question resource could be touched under course URI, \textit{/courses/:courseId/questions/:questionId}. But in the real world, question resource has its own collection, and \textit{questionId} is the unique identifier, through which a specific question entry could be selected without using  
+\textit{courseId}. So an optimized conception is simply using \textit{/questions} as URI instead. And pass \textit{courseId} as a query parameter while requesting collection of question entries under a specific course. 
 \begin{table}[!htbp]
 \centering
-\caption{Question Resource APIs}
-\label{question-resource-apis}
-\begin{tabular}{@{}lll@{}}
+
+\begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
 URI                                   & Method         & Description                                                                                                                                                 \\ \midrule
-/questions?courseId=:id               & GET/POST       & \begin{tabular}[c]{@{}l@{}}request the whole collection of questions belonging to a specific course;\\ create question under a specific course\end{tabular} \\
-/questions/:questionId                & GET/PUT/DELETE & request, modify, remove specific entry of question                                                                                                          \\
-/questions/:questionId/vote/:voteType & POST           & vote actions with different vote types applied to specific question                                                                                         \\ \bottomrule
-\end{tabular}
+/questions?courseId=:id               & GET/POST       & request the whole collection of questions belonging to a specific course; create question under a specific course \\
+/questions/:id                & GET/PUT/DELETE & request, modify, remove specific entry of question                                                                                                          \\
+/questions/:id/vote/:type      & POST          & vote actions with different vote types applied to specific question  \\ \bottomrule
+\end{tabularx}
+\caption{Question Resource APIs}
+\label{question-resource-apis}
 \end{table}
 
 
 \item
-\textbf{Answers}: 
+\textbf{Answers}: the general API design of answer is totally same as the approach applied in question resource. A independent API for voting functionality should also be designed. And multiple possibilities of vote types could also be passed through the API.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
 \begin{table}[!htbp]
 \centering
-\caption{Answer Resource APIs}
-\label{answer-resources-apis}
-\begin{tabular}{@{}lll@{}}
+
+\begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
 URI                                 & Method         & Description                                                                                                                                                 \\ \midrule
-/answers?questionId=:id             & GET/POST       & \begin{tabular}[c]{@{}l@{}}request the whole collection of answers belonging to a specific question;\\ create answer under a specific question\end{tabular} \\
-/answers/: answersId                & GET/PUT/DELETE & request, modify, remove specific entry of answer                                                                                                            \\
-/answers/: answersId/vote/:voteType & POST           & vote actions with different vote types applied to specific answer                                                                                           \\ \bottomrule
-\end{tabular}
+/answers?questionId=:id             & GET/POST       & request the whole collection of answers belonging to a specific question; create answer under a specific question\\
+/answers/:id                        & GET/PUT/DELETE & request, modify, remove specific entry of answer                                                                                                            \\
+/answers/:id/vote/:type             & POST           & vote actions with different vote types applied to specific answer                                                                                           \\ \bottomrule
+\end{tabularx}
+\caption{Answer Resource APIs}
+\label{answer-resources-apis}
 \end{table}
 
 \end{enumerate}
 
-
-
-
+Once all APIs with different HTTP methods are defined, a more concrete data structure over the APIs between two sides should be promised and confirmed. By following defined APIs and promised data structure, developments on both client and server-side could be executed parallelly.
 
 % how communication.
 % best practise.
