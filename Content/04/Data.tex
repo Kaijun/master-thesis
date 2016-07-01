@@ -1,33 +1,73 @@
-
-
 In this section, data modelling of the system including definitions of data domain, data fields for each domain, and relation between domains will be performed in the first place. In the following sub section, APIs corresponding to related operations on data models will be assigned.
 
-\subsection{Data Model}
+\subsection{General Data Model}
 
 
 \subsubsection{ Data Domain }
-In general, data in the system could be divided into 3 primary domains:
+In general, data in the system could be divided into 4 primary domains:
 
 \begin{enumerate}
 \item
-\textbf{User}: persists personal information as well as user identifier for accessing the system.
+\textbf{User}: personal information as well as user identifier for accessing the system.
 \item
-\textbf{Course}: represents 
+\textbf{Course}: a container with own course information as well as collection of questions classified to this context.
 \item
-\textbf{Question}: 
+\textbf{Question}:  data with information of questions submitted by users.
 \item
-\textbf{Answer}: 
+\textbf{Answer}: data with information of answers, also has graphical data within the data model.
 
 \end{enumerate}
 
-% relation pic
+Users are able to assess the contributions made by other users and mark it as useful or useless, which will affect the contributions' oder priority while rendering the views. Voters should also be aware of what kind of vote he has marked to the contribution. Therefore, additional 2 data models \textbf{VoteAnswer} and \textbf{VoteQuestion} should also be considered. 
 
+The relation between domains is illustrated in the following figure \ref{ata-domain-relation}. Each data modal has an unique identifier, which is referenced in another data model when they have a connection. 
+
+\begin{figure}[!htbp]
+  \centering
+    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
+  \caption{placeholder}
+  \label{fig:data-domain-relation}
+\end{figure}
+% relation pic
+% Belonging!!! User->Course->Question->Answers!
+% PowerDesigner - Tool!
 
 
 \subsubsection{ Data Fields }
 
-% Belonging!!! User->Course->Question->Answers!
+More detailed definition and description of fields in each data model should be made for a better understanding of the structure as well as behaviour of a data model. Tabel \ref{data-field-table} describes key fields of general domains.
 
+
+\begin{table}[]
+\centering
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+\toprule
+Domain                    & Field           & Description                                                                                    \\ \midrule
+\multirow{4}{*}{User}     & email           & unique identifier of an user for authentification, also as contact way to user.                \\
+                          & password        & string for user authentication to prove identity or access approval                            \\
+                          & username        & user identifier shown to other users                                                           \\
+                          & isTutor         & flag which determines if the user is a student or tutor                                        \\ \midrule
+\multirow{4}{*}{Course}   & name            & name of the course                                                                             \\
+                          & desc            & description of the course                                                                      \\
+                          & creator         & id of the user(tutor) who created this course                                                  \\
+                          & code            & unique code for quick search purpose which is generated automatically as the course is created \\ \midrule
+\multirow{5}{*}{Question} & title           & title of the question                                                                          \\
+                          & content         & content of the question                                                                        \\
+                          & course          & id of the the course to which the question belongs                                             \\
+                          & vote            & vote count of the question                                                                     \\
+                          & creator         & id of the user who submitted this question                                                     \\ \midrule
+\multirow{5}{*}{Answer}   & content         & content of the answer                                                                          \\
+                          & question        & id of the question for which the answer is made                                                \\
+                          & quoted          & id of the original question which is quoted                                                    \\
+                          & vote            & vote count of the answer                                                                       \\
+                          & creator         & id of the submitter                                                                            \\ \midrule
+\multirow{3}{*}{Vote}     & type            & enum values of up-voting or down-voting actions                                                \\
+                          & handler         & id of the hander                                                                               \\
+                          & question/answer & id of the question/answer to which the vote action is applied                                  \\ \midrule
+\end{tabularx}
+\caption{Fields for Each Data Domain}
+\label{data-field-table}
+\end{table}
 
 
 \subsection{RESTful API Definitions}
