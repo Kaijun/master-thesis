@@ -1,0 +1,199 @@
+%%****************************************
+%%*                                      *
+%%* TU Dresden                           *
+%%* Lehrstuhl für Wirtschaftsinformatik, *
+%%* insbesondere Systementwicklung       *
+%%*                                      *
+%%****************************************
+%%
+%% LaTeX-Vorlage fuer Doktor-, Diplom- und Seminararbeiten
+%% Anhangteil (Original:appendix.sty) 
+%%
+%% Version: 1.0  Neuversionierung (Malte Helmhold, 07/10/2012) 
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{wiseapp}[10/07/2012 v1.1 extra appendix facilities adopted to WiSe standards]
+\RequirePackage{ifthen}
+\newif\if@chapter@pp\@chapter@ppfalse
+\newif\if@knownclass@pp\@knownclass@ppfalse
+\@ifclassloaded{book}{\@chapter@pptrue\@knownclass@pptrue}{}
+\@ifclassloaded{scrbook}{\@chapter@pptrue\@knownclass@pptrue}{}
+\@ifclassloaded{report}{\@chapter@pptrue\@knownclass@pptrue}{}
+\@ifclassloaded{article}{\@knownclass@pptrue}{}
+\@ifclassloaded{scrartcl}{\@knownclass@pptrue}{}
+\@ifclassloaded{proc}{\@knownclass@pptrue}{}
+\@ifclassloaded{ltxdoc}{\@knownclass@pptrue}{}
+\newif\if@dotoc@pp\@dotoc@ppfalse
+\newif\if@dotitle@pp\@dotitle@ppfalse
+\newif\if@dotitletoc@pp\@dotitletoc@ppfalse
+\newif\if@dohead@pp\@dohead@ppfalse
+\newif\if@dopage@pp\@dopage@ppfalse
+\DeclareOption{toc}{\@dotoc@pptrue}
+\DeclareOption{title}{\@dotitle@pptrue}
+\DeclareOption{titletoc}{\@dotitletoc@pptrue}
+\DeclareOption{header}{\@dohead@pptrue}
+\DeclareOption{page}{\@dopage@pptrue}
+\ProcessOptions\relax
+\if@knownclass@pp\else
+  \PackageWarning{appendix}%
+    {I don't recognize the class but I'll do my best}
+  \ifx\chapter\undefined\else\@chapter@pptrue\fi
+\fi
+\newcounter{@ppsavesec}
+\newcounter{@ppsaveapp}
+\setcounter{@ppsaveapp}{0}
+\newcommand{\@ppsavesec}{%
+  \if@chapter@pp \setcounter{@ppsavesec}{\value{chapter}} \else
+                 \setcounter{@ppsavesec}{\value{section}} \fi}
+\newcommand{\@pprestoresec}{%
+  \if@chapter@pp \setcounter{chapter}{\value{@ppsavesec}} \else
+                 \setcounter{section}{\value{@ppsavesec}} \fi}
+\newcommand{\@ppsaveapp}{%
+  \if@chapter@pp \setcounter{@ppsaveapp}{\value{chapter}} \else
+                 \setcounter{@ppsaveapp}{\value{section}} \fi}
+\newcommand{\restoreapp}{%
+  \if@chapter@pp \setcounter{chapter}{\value{@ppsaveapp}} \else
+                 \setcounter{section}{\value{@ppsaveapp}} \fi}
+\providecommand{\appendixname}{Appendix}
+\newcommand{\appendixtocname}{Appendices}
+\newcommand{\appendixpagename}{Appendices}
+\newcommand{\appendixpage}{%
+  \if@chapter@pp \@chap@pppage \else \@sec@pppage \fi
+}
+\newcommand{\@chap@pppage}{%
+  \if@openright\cleardoublepage\else\clearpage\fi
+  \thispagestyle{plain}%
+  \if@twocolumn\onecolumn\@tempswatrue\else\@tempswafalse\fi
+  \null\vfill
+  \markboth{}{}%
+  {\centering
+   \interlinepenalty \@M
+   \normalfont
+   \huge \bfseries \appendixpagename\par}%
+  \vfil\newpage
+  \if@twoside
+    \if@openright
+      \null
+      \thispagestyle{empty}%
+      \newpage
+    \fi
+  \fi
+  \if@tempswa
+    \twocolumn
+  \fi
+}
+\newcommand{\@sec@pppage}{%
+  \par
+  \addvspace{2ex}%
+  \@afterindentfalse
+  {\parindent \z@ \raggedright
+   \interlinepenalty \@M
+   \normalfont
+   \huge \bfseries \appendixpagename%
+   \markboth{}{}\par}%
+   %Hinzu
+   \thispagestyle{empty}
+  \nobreak
+  %\vskip
+  \@afterheading
+}
+\newcommand{\addappheadtotoc}{%
+  \if@chapter@pp
+    \addcontentsline{toc}{chapter}{\appendixtocname}
+  \else
+    \addcontentsline{toc}{section}{\appendixtocname}
+  \fi
+}
+\newcommand{\@resets@pp}{
+  \par
+  \@ppsavesec
+  \setcounter{section}{0}
+  \if@chapter@pp
+    \setcounter{chapter}{0}
+    \renewcommand\@chapapp{\appendixname}
+    \renewcommand\thechapter{\@Alph\c@chapter}
+  \else
+    \setcounter{subsection}{0}
+    \renewcommand\thesection{\@Alph\c@section}
+  \fi
+  \restoreapp
+}
+
+\newenvironment{appendices}{%
+  \clearpage
+  \@resets@pp
+  \if@dotoc@pp \addappheadtotoc \fi
+  \if@dopage@pp \appendixpage \fi
+  \if@chapter@pp
+    \if@dotitletoc@pp \@redotocentry@pp{chapter} \fi
+  \else
+    \if@dotitletoc@pp \@redotocentry@pp{section} \fi
+    \if@dohead@pp
+      \def\sectionmark##1{%
+        \if@twoside
+          \markboth{\@formatsecmark@pp{##1}}{}
+        \else
+          \markboth{}{\@formatsecmark@pp{##1}}
+        \fi}
+    \fi
+    \if@dotitle@pp
+      \def\sectionname{\appendixname}
+      \def\subsectionname{\appendixname}
+      \def\subsubsectionname{\appendixname}
+      \def\@seccntformat##1{\@ifundefined{##1name}{}{\csname ##1name\endcsname\ }%
+        \csname the##1\endcsname\quad}
+    \fi
+  \fi}{%
+  \@ppsaveapp\@pprestoresec}
+
+\newcommand{\setthesection}{\thechapter.\Alph{section}}
+\newcommand{\setthesubsection}{\thesection.\Alph{subsection}}
+
+\newcommand{\@resets@ppsub}{
+  \par
+  \if@chapter@pp
+    \setcounter{section}{0}
+    \renewcommand{\thesection}{\setthesection}
+  \else
+    \setcounter{subsection}{0}
+    \renewcommand{\thesubsection}{\setthesubsection}
+  \fi
+}
+
+\newenvironment{subappendices}{%
+  \@resets@ppsub
+  \if@chapter@pp
+    \if@dotitletoc@pp \@redotocentry@pp{section} \fi
+    \if@dotitle@pp
+      \def\sectionname{\appendixname}
+      \def\@seccntformat##1{\@ifundefined{##1name}{}{\csname ##1name\endcsname\ }%
+        \csname the##1\endcsname\quad}
+    \fi
+  \else
+    \if@dotitletoc@pp \@redotocentry@pp{subsection} \fi
+    \if@dotitle@pp
+      \def\subsectionname{\appendixname}
+      \def\@seccntformat##1{\@ifundefined{##1name}{}{\csname ##1name\endcsname\ }%
+        \csname the##1\endcsname\quad}
+    \fi
+  \fi}{}
+
+\newcommand{\@formatsecmark@pp}[1]{%
+  %\MakeUppercase{
+  \appendixname\space
+    \ifnum \c@secnumdepth >\z@
+      \thesection\quad
+    \fi
+    #1}%}
+\newcommand{\@redotocentry@pp}[1]{%
+  \let\oldacl@pp=\addcontentsline
+  \def\addcontentsline##1##2##3{%
+    \ifthenelse{\equal{##1}{toc}}{%
+      \ifthenelse{\equal{##2}{#1}}{%
+        \addtocontents{##1}{\protect\contentsline{##2}%
+                            {\appendixname\space ##3}{\thepage}}}%
+      {\oldacl@pp{##1}{##2}{##3}}}%
+    {\oldacl@pp{##1}{##2}{##3}}}}
+\endinput
+
+

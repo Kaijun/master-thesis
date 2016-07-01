@@ -1,0 +1,613 @@
+%%****************************************
+%%*                                      *
+%%* TU Dresden                           *
+%%* Lehrstuhl für Wirtschaftsinformatik, *
+%%* insbesondere Systementwicklung       *
+%%*                                      *
+%%****************************************
+%%
+%% LaTeX-Vorlage fuer Doktor-, Diplom- und Seminararbeiten
+%% Textbausteine
+%%
+%% Version: 1.0  Neuversionierung (Malte Helmhold, 07/10/2012) 
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{wisetext}[10/07/2004 Textbausteine für Dokumente an
+der WiSe von Malte Helmhold]
+
+%Behandlung der pdf-Option. Dies wird eingeführt, um Übersetzungszeit
+%zu sparen, wenn nur ein .ps erzeugt werden soll. Zum anderen
+%interpretiert ps2pdf die Seitenaufteilung anders.
+\newif\if@pdf
+\@pdffalse
+\DeclareOption{pdf} {%
+    \@pdftrue%
+}%
+\DeclareOption*{%
+    \typeout{Die Klasse kann die Option \CurrentOption nicht
+        verarbeiten.}%
+    \typeout{Die einzigst zulässig Option ist: pdf}%
+}%
+\ProcessOptions\relax
+
+%------------------------interne Befehle-------------------------
+
+% Befehl dient zur Unterstützung der Erstellung von Titelseiten der
+% Lehrstuhldokumente. Er schreibt zentriert den Namen der Uni, der Fakultät
+% und des Lehrstuhls aus.
+\newcommand{\@institution}{
+  \begin{center}
+  %Institution an der die Arbeit geschrieben wurde
+  \LARGE 
+  Technische Universität Dresden
+
+  \bigskip
+  \normalsize
+  Fakultät Wirtschaftswissenschaften\\
+  Lehrstuhl für Wirtschaftsinformatik,\\
+  insbesondere Systementwicklung
+  \end{center}   
+}
+% Ende des \institution Befehls
+
+
+
+%####
+% Befehl für eine deutsche Seminararbeitstitelseite
+% Es werden 3 Parameter benötigt:
+% 1. deutscher Titel der Seminararbeit
+% 2. Autornamen (MATRIKELNUMMERN)
+% 3. Titel Vor- und Zuname der Betreuer
+\newcommand\@seminartitlepage[4] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfauthor={#2}%
+  }%
+  \fi
+   \thispagestyle{empty}
+  \enlargethispage{1cm}
+
+  \@institution
+  \vspace{2cm}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1 %deutscher Titlel
+  \vspace{2cm}
+
+  % Zweck der Arbeit
+  \normalsize
+Seminararbeit\\%
+  zur Erlangung eines Seminarscheines\\%
+  nach §7 der Prüfungsordnung #4
+
+  % Mit dem \vfill sorgen wir dafür, da je nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \end{center}
+  \vfill
+  \begin{flushright}
+        {#2\\              
+        Betreuer: #3\\          
+        Dresden, \today }
+  \end{flushright}    
+  
+    \setcounter{page}{1}  
+}
+
+%####
+% Befehl für eine deutsche Projektarbeitstitleseite
+% Es werden 3 Parameter benötigt:
+% 1. optional in Eckigen Klammern [Prüfungsordnungsname]
+% 2. Titel der Seminararbeit
+% 3. Autornamen (MATRIKELNUMMERN)
+% 4. Titel Vor- und Zuname der Betreuer
+\newcommand\@projecttitlepage[4] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfauthor={#2}%
+  }%
+  \fi
+   \thispagestyle{empty}
+  \enlargethispage{1cm}
+
+  \@institution
+  \vspace{2cm}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1 %deutscher Titlel
+  \vspace{2cm}
+
+  % Zweck der Arbeit
+  \normalsize
+{Projektarbeit\\%
+  nach §8 der Prüfungsordnung #4}
+
+  % Mit dem \vfill sorgen wir dafür, da je nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \end{center}
+  \vfill
+  \begin{flushright}
+        {#2\\              
+        Betreuer: #3\\          
+        Dresden, \today }
+  \end{flushright}    
+  
+    \setcounter{page}{1}  
+}
+
+
+\newcommand\@semsem[5] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfsubject={#5},%
+      pdftitle={#1},%
+      pdfauthor={#2}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+  \enlargethispage{1cm}
+
+  \@institution 
+  \vspace{2cm}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1
+  \vspace{2cm}
+
+  % Zweck der Arbeit
+  \normalsize
+  #4
+
+  % Mit dem \vfill sorgen wir dafür, da je nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \end{center}
+  \vfill
+  \begin{flushright}
+        {#2\\              
+        Betreuerin: #3\\          
+        Dresden, \today}
+  \end{flushright}      
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+\newcommand{\projectproject}[4]{%
+  \@semsem{#1}{#2}{#3}{Projektarbeit\\%
+  im Modul #4}{Projektarbeit%
+ im Modul #4}%
+}
+
+%-----------Öffentliche Befehle---------------------------
+
+% Definiert ein Seminararbeitsdeckblatt. Ruft \@seminartitlepage
+% auf. Parameter:
+% 1. Titel der Seminararbeit
+% 2. Vor und Zuname des Autors \\ Vor und Zunahme des 2. Betreuers
+% 3. Matrikelnummer des Autors
+% 4. Titel Vor- und Zuname des Betreuers
+% 5. Studiengang
+\newcommand{\seminartitlepage}[3]{%
+  \@seminartitlepage{#1}{#2}{#3}
+}
+
+
+% Definiert ein Projektarbeitsdeckblatt. Ruft \@seminartitlepage
+% auf. Parameter:
+% 1. Titel der Projektarbeit
+% 2. Vor und Zuname des Autors (Matrikelnummer) \\ Vor und Zunahme des 2. Autors
+% 3. Titel Vor- und Zuname des Betreuers
+% 4. Studienfach 
+\newcommand{\projecttitlepage}[4]{%
+  \@projecttitlepage{#1}{#2}{#3}{#4}
+}
+
+%Befehl für die Erstellung der Titelseite einer Diplomarbeit. Es werden 7
+%Parameter benötigt: 
+%1. Titel der Arbeit
+%2. Zu erlangender Titel
+%3. Autor (Vor- und Zuname)
+%4. Matrikelnummer
+%5. 1. Betreuer (Tiel Vor- und Zuname)  
+%6. 2. Betreuer (Tiel Vor- und Zuname)
+%7. Beginn der Bearbeitungszeit (dd.mm.yyyy)
+%8. Ende der Bearbeitungszeit (dd.mm.yyyy)
+\newcommand\diplomatitlepage[8] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfsubject={Diplomarbeit zur Erlangung des akademischen Grades #2},%
+      pdftitle={#1},%
+      pdfauthor={#3}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+  %Institution an der die Arbeit geschrieben wurde
+  \@institution
+  \vspace{2cm}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1
+  \vspace{2cm}
+
+  % Zweck der Arbeit
+  \normalsize
+  Diplomarbeit\\
+  zur Erlangung des akademischen Grades\\
+  \glqq #2\grqq\
+
+  % Mit dem \vfill sorgen wir dafür, daje nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \vfill
+  \end{center}
+  \vspace{3cm}
+  
+  % Autoreninformationen
+  \begin{tabular}{l l}
+    Bearbeiter:  & #3\\
+    & Matrikelnummer: #4\\
+    Betreuer:    & #5\\
+                 & #6\\
+    Bearbeitungszeit: & #7 - #8\\
+  \end{tabular}
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+%Befehl für die Erstellung der Titelseite einer Bachelor-Arbeit. Es werden 7
+%Parameter benötigt: 
+%1. Titel der Arbeit
+%2. Zu erlangender Titel
+%3. Autor (Vor- und Zuname)
+%4. Matrikelnummer
+%5. 1. Betreuer (Tiel Vor- und Zuname)  
+%6. 2. Betreuer (Tiel Vor- und Zuname)
+%7. Beginn der Bearbeitungszeit (dd.mm.yyyy)
+%8. Ende der Bearbeitungszeit (dd.mm.yyyy)
+\newcommand\bachelortitlepage[8] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfsubject={Bachelor-Arbeit zur Erlangung des akademischen Grades #2},%
+      pdftitle={#1},%
+      pdfauthor={#3}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+  %Institution an der die Arbeit geschrieben wurde
+  \@institution
+  \vspace{2cm}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1
+  \vspace{2cm}
+
+  % Zweck der Arbeit
+  \normalsize
+  Bachelor-Arbeit\\
+  zur Erlangung des akademischen Grades\\
+  \glqq #2\grqq\
+
+  % Mit dem \vfill sorgen wir dafür, daje nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \vfill
+  \end{center}
+  \vspace{3cm}
+  
+  % Autoreninformationen
+  \begin{tabular}{l l}
+    Bearbeiter:  & #3\\
+    & Matrikelnummer: #4\\
+    Betreuer:    & #5\\
+                 & #6\\
+    Bearbeitungszeit: & #7 - #8\\
+  \end{tabular}
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+%Befehl für die Erstellung der Titelseite einer Master-Arbeit. Es werden 7
+%Parameter benötigt: 
+%1. Titel der Arbeit
+%2. Zu erlangender Titel
+%3. Autor (Vor- und Zuname)
+%4. Matrikelnummer
+%5. 1. Betreuer (Tiel Vor- und Zuname)  
+%6. 2. Betreuer (Tiel Vor- und Zuname)
+%7. Beginn der Bearbeitungszeit (dd.mm.yyyy)
+%8. Ende der Bearbeitungszeit (dd.mm.yyyy)
+\newcommand\mastertitlepage[8] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfsubject={Master-Arbeit zur Erlangung des akademischen Grades #2},%
+      pdftitle={#1},%
+      pdfauthor={#3}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+  %Institution an der die Arbeit geschrieben wurde
+  \@institution
+  \vspace{2cm}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1
+  \vspace{2cm}
+
+  % Zweck der Arbeit
+  \normalsize
+  Master-Arbeit\\
+  zur Erlangung des akademischen Grades\\
+  \glqq #2\grqq\
+
+  % Mit dem \vfill sorgen wir dafür, daje nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \vfill
+  \end{center}
+  \vspace{3cm}
+  
+  % Autoreninformationen
+  \begin{tabular}{l l}
+    Bearbeiter:  & #3\\
+    & Matrikelnummer: #4\\
+    Betreuer:    & #5\\
+                 & #6\\
+    Bearbeitungszeit: & #7 - #8\\
+  \end{tabular}
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+%Tittelblatt für die Kurzfassung einer Dissertation
+%Es wird benötigt:
+%1. Titel der Arbeit
+%2. zu erlangender akademischer Grad
+%3. Autor der Arbeit
+%4. Datum der Arbeit
+%5. Betreuer
+\newcommand\dissertationshorttitlepage[5] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfsubject={Dissertation zur Erlangung des akademischen Grades #2},%
+      pdftitle={#1},%
+      pdfauthor={#3}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  
+
+  Kurzfassung\\
+  \vspace{2cm}
+
+  #1
+  \vspace{2cm}
+
+% Zweck der Arbeit
+  \normalsize
+  \textbf{Dissertation}\\
+  \vspace{1cm}
+
+  zur Erlangung des akademischen Grades\\
+  \vspace{1cm}
+
+  #2\\
+  \vspace{1cm}
+
+  vorgelegt an der\\
+  \vspace{1cm}
+
+  %Institution an der die Arbeit geschrieben wurde
+  Fakultät für Wirtschaftswissenschaften\\
+  der\\
+  Technischen Universität Dresden
+  \vspace{1cm}
+
+  von\\
+  \vspace{1cm}
+  #3
+
+  % Mit dem \vfill sorgen wir dafür, daje nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \vfill
+  \vspace{2cm}
+
+  betreut durch #5\\
+  \vspace{1cm}
+
+        Dresden, den #4\\
+
+
+  \end{center}
+
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+% Befehl für das Deckblatt einer Dissertation an der Fakultät WIWI der TU
+% Dresden 
+% Parameter:
+% 1. Titel der Dissertation
+% 2. Angestrebter Titel
+% 3. Titel Vor- und Zuname des Autors
+% 4. Tag der Abgabe
+% 5. Tag des Rigorosums
+% 6. 1. Gutachter
+% 7. 2. Gutachter
+% 8. 3. Gutachter
+\newcommand\dissertationtitlepage[8] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdfsubject={Dissertation zur Erlangung des akademischen Grades #2},%
+      pdftitle={#1},%
+      pdfauthor={#3}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+
+  \begin{center}
+  % Titel der Arbeit
+  \LARGE
+  #1
+  \vspace{2cm}
+
+% Zweck der Arbeit
+  \normalsize
+  \textbf{Dissertation}\\
+  \vspace{1cm}
+
+  zur Erlangung des akademischen Grades\\
+  \vspace{1cm}
+
+  #2\\
+  \vspace{1cm}
+
+  vorgelegt an der\\
+  \vspace{1cm}
+
+  %Institution an der die Arbeit geschrieben wurde
+  %Institution an der die Arbeit geschrieben wurde
+  Fakultät für Wirtschaftswissenschaften\\
+  der\\
+  Technischen Universität Dresden
+  \vspace{1cm}
+
+  von\\
+  \vspace{1cm}
+  #3
+
+  % Mit dem \vfill sorgen wir dafür, daje nach Länge des Titels der Arbeit der
+  % entstehende Zwischenraum zwichen Zweck der Arbeit und Autor aufgefüllt
+  % wird, mit anderen Worten wird die Seite mittels des Zwischenraums immer
+  % auf die gesamte Seite gezogen
+  \vfill
+  \end{center}
+  \vspace{3cm}
+
+  % Autoreninformationen
+  \begin{tabular}{l}
+    vorgelegt: \\
+    #4\\
+    verteidigt:    \\
+    #5\\
+  \end{tabular}
+  \hfill
+  \begin{tabular}{l}
+    Gutachter: \\
+    #6\\
+    #7\\
+    #8\\
+  \end{tabular}
+
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+% Dieser Befehl ist als Deckblatt für Diskussionspapier gedacht, die
+% während des Schreibens der DA entstehen. Die Parameter im
+% Einzelnen:
+% 1 - Der Titel des Papiers
+% 2 - Eine Anmerkung, z.B. Tag der Diskussion
+% 3 - Autorenkollektiv
+% Vereinbarungsgemäß wird der Zeilenabstand auf 1 gesetzt.
+\newcommand\shorttitlepage[3] {%
+  %Einfügen des hypersetups, falls wir ein pdf bauen
+  \if@pdf
+  \hypersetup {%
+      pdftitle={#1},%
+      pdfsubject={Arbeitspapier},
+      pdfauthor={#3}%
+  }%
+  \fi
+
+  \thispagestyle{empty}
+  %Institution an der die Arbeit geschrieben wurde
+  \@institution
+
+  \begin{center}
+  % Titel der Arbeit
+  \vspace{4cm}
+  \LARGE
+  #1
+  \vfill
+  \end{center}
+  
+  % Autoreninformationen
+  \vspace{3cm}%
+  \noindent #2 \par%
+  \noindent\textbf{Autor(en):}%
+  \begin{quotation}
+    \noindent#3%
+  \end{quotation}
+  \cleardoublepage
+  %Den Page-Counter zurücksetzen, falls wir keine Abstract haben
+  \setcounter{page}{1}
+}
+
+
+%Eidesstattliche Erklärung
+\newcommand\declaration{%
+  \addsec{Ehrenwörtliche Erklärung}
+  Hiermit versichere ich, die vorliegende Arbeit selbständig, ohne
+  fremde Hilfe und ohne Benutzung anderer als der von mir angegebenen
+  Quellen angefertigt zu haben. Alle aus fremden Quellen direkt oder
+  indirekt übernommenen Gedanken sind als solche gekennzeichnet. Die
+  Arbeit wurde noch keiner Prüfungsbehörde in gleicher oder ähnlicher
+  Form vorgelegt.%
+
+  \vspace{4cm}%
+  \noindent Dresden, den \today%
+}
+
+\newcommand\declarationEN{%
+  \addsec{Declaration of Authorship}
+I hereby certify that this thesis has been composed by me and is based on my own work, unless stated otherwise. No other person?s work has been used without due acknowledgement in this thesis. All references and verbatim extracts have been quoted, and all sources of information, including graphs and data sets, have been specifically acknowledged.%
+
+  \vspace{4cm}%
+  \noindent Dresden, the \today%
+}
+
