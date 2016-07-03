@@ -1,4 +1,4 @@
-In this section, data modelling of the system including definitions of data domain, data fields for each domain, and relation between domains will be performed in the first place. In the following sub section, APIs corresponding to related operations on data models will be assigned.
+In this section, data modelling of the system including definitions of data domain, data fields for each domain, and relation between domains will be performed in the first place. In the following subsection, APIs corresponding to related operations on data models will be assigned.
 
 \subsection{General Data Model}
 
@@ -66,7 +66,7 @@ Domain                    & Field           & Description                       
                           & question/answer & id of the question/answer to which the vote action is applied                                  \\ \midrule
 \end{tabularx}
 \caption{Fields for Each Data Domain}
-\label{data-field-table}
+\label{table:data-field-table}
 \end{table}
 
 
@@ -87,7 +87,7 @@ PUT           & {Update a specific user in user model collection.}              
 DELETE        & {Delete a specific user in user model collection.}               \\ \bottomrule
 \end{tabularx}
 \caption{HTTP methods on User resource}
-\label{http-method-on-user-resource}
+\label{table:http-method-on-user-resource}
 \end{table}
 
 In table \ref{http-method-on-user-resource}, resource entry in persistent storage can be executed with specific action while requesting resource URI through different HTTP methods. A semantic description of connection between \gls{CRUD} and HTTP methods on RESTful will make the data transmission services more understandable and unified.
@@ -111,7 +111,7 @@ URI          & Method & Description                                             
 /auth/logout & GET    & User logout action, no data submission is needed.            \\ \bottomrule
 \end{tabularx}
 \caption{User Auth APIs}
-\label{user-auth-apis}
+\label{table:user-auth-apis}
 \end{table}
 
 \item
@@ -127,7 +127,7 @@ URI                 & Method         & Description                              
 /courses/:courseId & GET/PUT/DELETE & request, modify, remove specific entry of course                                                                     \\ \bottomrule
 \end{tabularx}
 \caption{Course Resource APIs}
-\label{course-resource-apis}
+\label{table:course-resource-apis}
 \end{table}
 
 \item
@@ -144,7 +144,7 @@ URI                                   & Method         & Description            
 /questions/:id/vote/:type      & POST          & vote actions with different vote types applied to specific question  \\ \bottomrule
 \end{tabularx}
 \caption{Question Resource APIs}
-\label{question-resource-apis}
+\label{table:question-resource-apis}
 \end{table}
 
 
@@ -162,14 +162,26 @@ URI                                 & Method         & Description              
 /answers/:id/vote/:type             & POST           & vote actions with different vote types applied to specific answer                                                                                           \\ \bottomrule
 \end{tabularx}
 \caption{Answer Resource APIs}
-\label{answer-resources-apis}
+\label{table:answer-resources-apis}
 \end{table}
 
 \end{enumerate}
 
 Once all APIs with different HTTP methods are defined, a more concrete data structure over the APIs between two sides should be promised and confirmed. By following defined APIs and promised data structure, developments on both client and server-side could be executed parallelly.
 
-\subsection{WebSocket Definitions}
+\subsection{WebSocket Definitions} \label{subsection:websocket-definition-data-concept}
 
-TBD
+As the requirements defined in section \ref{sec:aims}, users could be informed as new question is posted or the order of answers with rating priority changes. Basically, only two different types of listeners are needed in this case: one for listening to the new questions under a specific class and one for responsive order of answers under a specific question. With WebSocket, URI should also be defined as an identifier for the persistent connection between client and server. And different events within a connection of one URI should also be designed. Table \ref{table:websocket-def} defines these two WebSocket specifications.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabularx}{\textwidth}{@{}llX@{}}
+\toprule
+URI                       & Event           & Response                           \\ \midrule
+/ws/courses/            & new-question       &  data of new question posted by others \\
+/ws/questions/          & order-changed      &  data of answers in new order          \\ \bottomrule
+\end{tabularx}
+\caption{Answer Resource APIs}
+\label{table:websocket-def}
+\end{table}
 

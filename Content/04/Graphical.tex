@@ -16,8 +16,9 @@ Considering that all contributions in the system are made with graphical content
 
 \subsubsection{Extensibility}
 % WebGL for further usage, animation support?
+TDB
 
-\subsection{Converting Canvas Data }
+\subsection{Storable and Reversible Canvas Data }
 
 A focus point in the thesis is how to store the graphical content submitted by users. In the traditional way, graphical data could only be stored either in file system or in the database with encoded format, for example Base64 encoded images. 
 
@@ -74,6 +75,22 @@ canvas.
 \end{figure}
 % properties on objectified elements, -> data model (json) -> restore from data.
 
-After converting all elements in wrapped canvas, the new data model is much more efficient for storing comparing to the original image data. The wrapped Canvas should also provides a method to restore the output data, create new objectified elements by giving the properties of the data model, and re-render the elements into original Canvas pixel by pixel. With this approach, the feature of modification on elements while quoting other contributions could also be achieved. 
+After converting all elements in wrapped canvas, the new data model is much more efficient for storing comparing to the raw image data. The wrapped Canvas will also provides a method to restore the output data, create new objectified elements by giving the properties of the data model, and re-render the elements into original Canvas pixel by pixel. With this approach, the feature of modification on elements while quoting other contributions could also be achieved. 
 
 \subsection{Drawing Tool}
+
+After the conception of a feasible wrapped canvas as base of the container for all elements, a drawing tool which provides user interfaces to draw variable shapes as well as texts should be designed in the next step. 
+
+First of all, user interfaces for selecting different drawing mode like drawing circle, rectangle or line should be designed. Buttons for toggling various drawing modes are the best choice in this case.
+
+Because drawing elements in different shapes has distinct behaviors, so listeners for each specific drawing mode should be defined. When the button for toggling drawing mode is clicked by user and specific drawing mode is activated, the correlative listener will be initiated. Clicking events or moving events of the mouse on Canvas will be captured and processed. Meanwhile, drawing behaviors are also performed according the mouse events fired by user.
+
+\begin{figure}[!htbp]
+  \centering
+    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
+  \caption{placeholder}
+  \label{fig:drawing-tool-concept}
+\end{figure}
+% drawing tool, with diff drawing mode, start listener, stop old listener (life cycle).
+
+Figure \ref{fig:drawing-tool-concept} illustrated the conception of drawing tool with user interfaces and life cycle of event listeners for each drawing mode.
