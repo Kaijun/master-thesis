@@ -161,3 +161,45 @@ So a \textit{if} statement will be executed before the operations on resources i
 
 
 \subsection{WebSocket Implementation}
+For the implementation of real-time functionality, a library called Socket.io\footnote{http://socket.io/} which a fast and reliable real-time engine is used. 
+
+As described in section \ref{sec:realtime-concept}, at the start of server, an instance of Socket.io will be created for listening for WebSocket requests within specific namespace. Following code list \ref{list:server-websocket-course-listen-imp} shows the main process of listener created for real-time questions under a specific course.
+
+\begin{lstlisting}[language=JavaScript, caption=Server starts listening for requests over WebSocket protocol , label={list:server-websocket-course-listen-imp}]
+var courseWS = io.of('/ws/courses/');
+var courseSocketMap  = {};
+courseWS.on('connection', function(socket){
+  socket.on('course-to-listen', function(courseId){
+    if(courseSocketMap[courseId]){
+      courseSocketMap[courseId].push(socket)
+    }
+    else{
+      courseSocketMap[courseId] = [socket]
+    }
+  });
+});
+
+courseWS.on('disconnection', function(socket){
+  Object.keys(courseSocketMap).forEach(function(courseId) {
+    var index = courseSocketMap[courseId].indexOf(socket)
+    if (index > -1) {
+      courseSocketMap[courseId].splice(index, 1);
+    }
+  });
+});
+/* --- Listening for Question is the same approach--- */
+\end{lstlisting}
+
+After the WebSocket listener is started, it will monitoring the the event called \textit{course-to-listen}. As it is triggered, \textit{courseId} received from client will be mapped to the a list of socket objects which represent the users who are listening to this resource. After the client disconnets from the WebSocket, his socket object will be removed from the listening list. 
+
+\begin{lstlisting}[language=JavaScript, caption=Server starts listening for requests over WebSocket protocol , label={list:server-websocket-course-emit-imp}]
+var sockets = courseSocketMap[courseId];
+sockets.forEach(function(socket){
+  socket.emit('questions-changed', newQuestions);
+});
+/* --- Listening for Question is the same approach--- */
+\end{lstlisting}
+
+If the questions under the specific course are changed, all sockets which could be referenced from \textit{courseSocketMap} by using the \textit{courseId} will emit a event with payload of changed question resources. Those clients who has subscribed this course will be informed and receive the new questions passively. Code list \ref{list:server-websocket-course-emit-imp} demonstrates the process.
+
+The approach of real-time order of answers under a specific question is quite same as the approach mentioned above.

@@ -18,6 +18,6 @@ A feasible solution is that the server maintains a list of user ids and resource
 
 %zhuangtaitu! status diagram!!! connected -> emit id to listen -> a list of mapping maintained by server.
 
-Figure \ref{fig:websocket-connection-sequence-concept} represents the whole workflow of establishing the connection over WebSocket. In the first place, the server start listening for requests in WebSocket protocol with specific URI. Then the user start a connection to server for subscribing the resource he requires. As soon as the connection is successfully established, the client will emit the resource id to the server side, and resource id from client will be mapped to the user id in a list maintained by the server.
+Figure \ref{fig:websocket-connection-sequence-concept} represents the whole workflow of establishing the connection over WebSocket. In the first place, the server starts listening for requests over WebSocket protocol with specific URI. Then the user start a connection to server for subscribing the resource he requires. As soon as the connection is successfully established, the client will emit the resource id to the server side, and resource id from client will be mapped to the user id in a list maintained by the server.
 
 After that, the server has the information of which user has subscribed which resource, and is able to emit realtime data precisely.
