@@ -117,7 +117,7 @@ The usage of Webpack on server app is quite different. It will bundle all depend
 \end{figure}
 % Building Process, a->b->c->d xuxian kuang, Webpack compile, bundle, compress -> copy file to dist -> ready for deploy
 
-\subsection{Storage Structure}
+\subsection{Storage Structure} \label{subsec:storage-structure-imp}
 In section \ref{sec:data-concept}, data domains and fields of data domains  have already been defined. 
 
 For all persistence storage of data on the server side a MongoDB\footnote{https://www.mongodb.com/} database is used.  In figure \ref{fig:data-model-table-imp}, more concrete definition of data model table is defined. MongoDB is a non-SQL database, which uses document oriented storage and JSON style data model. That will make it easy to implement as well as scale data models. In addition, An \gls{ORM} framework called Mongoose\footnote{http://mongoosejs.com/} is also applied to the implementation, which encapsulates the native database operations of MongoDB. With help of the \gls{ORM} framework, definition of schema and query on database will be quite simple. 
