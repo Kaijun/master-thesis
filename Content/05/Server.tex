@@ -1,10 +1,10 @@
-This section gives the explanation of architectural pattern and more detailed implementation of the server side. 
+% This section gives the explanation of architectural pattern and more detailed implementation of the server side. 
 
 % Architecture MV, , JWT for Auth, Websocket Dispatcher, Resource Listening?
 
 \subsection{Architecture}
 
-\subsubsection{MVC Pattern and Project Structure}
+\subsubsection{MVC Pattern \& Project Structure}
 To separate the different layers of model, view and controller, \gls{MVC} pattern is used as the basic pattern of the architecture. In the model layer, all data model related concerns such as data shema definitions, data model validation as well as database operations are defined. And Controllers contain the core domain logics, process the data from model layer, and pass the result to view layer.
 
 Since the templates are rendered on the client side, the view layer is just simply stripped. Therefore, basically the controllers response processed data to client side directly without rendering it to views. Figure \ref{fig:server-file-structure-imp} shows the overview of the server's  file structure which is featured with MVC pattern.
@@ -190,7 +190,7 @@ courseWS.on('disconnection', function(socket){
 /* --- Listening for Question is the same approach--- */
 \end{lstlisting}
 
-After the WebSocket listener is started, it will monitoring the the event called \textit{course-to-listen}. As it is triggered, \textit{courseId} received from client will be mapped to the a list of socket objects which represent the users who are listening to this resource. After the client disconnets from the WebSocket, his socket object will be removed from the listening list. 
+After the WebSocket listener is started, it will monitor the the event called \textit{course-to-listen}. As it is triggered, \textit{courseId} received from client will be mapped to the a list of socket objects which represent the users who are listening to this resource. After the client disconnets from the WebSocket, his socket object will be removed from the listening list. 
 
 \begin{lstlisting}[language=JavaScript, caption=Server starts listening for requests over WebSocket protocol , label={list:server-websocket-course-emit-imp}]
 var sockets = courseSocketMap[courseId];
@@ -200,6 +200,6 @@ sockets.forEach(function(socket){
 /* --- Listening for Question is the same approach--- */
 \end{lstlisting}
 
-If the questions under the specific course are changed, all sockets which could be referenced from \textit{courseSocketMap} by using the \textit{courseId} will emit a event with payload of changed question resources. Those clients who has subscribed this course will be informed and receive the new questions passively. Code list \ref{list:server-websocket-course-emit-imp} demonstrates the process.
+If the questions under the specific course are changed, all sockets which could be referenced from \textit{courseSocketMap} by using the \textit{courseId} will emit an event with payload of changed question resources. Those clients who has subscribed this course will be informed and receive the new questions passively. Code list \ref{list:server-websocket-course-emit-imp} demonstrates the process.
 
 The approach of real-time order of answers under a specific question is quite same as the approach mentioned above.

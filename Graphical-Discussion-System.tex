@@ -16,6 +16,7 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{glossaries}
+\usepackage{pdfpages}
 
 \usepackage{forest}
 
@@ -75,17 +76,21 @@
 
 % \renewcommand{\baselinestretch}{1.15}
 
-\makeglossaries
 \input{Content/00/Glossar}
+\makeglossaries
 
 \begin{document}
 
 \input{Content/00/Title}
 \maketitle
 
+
+\includepdf[pages={-}]{Documents/KaijunChen-Master-Aufgabenstellung.pdf}
+
 % \confirmation
 \confirmation[pagestyle=empty.tudheadings]
 \cleardoublepage
+
 
 \TUDoption{abstract}{section}
 \begin{abstract}[pagestyle=empty.tudheadings]
@@ -152,6 +157,10 @@
 \newpage
 \addcontentsline{toc}{chapter}{List of Tables}
 \listoftables
+
+\newpage
+\addcontentsline{toc}{chapter}{List of Codes}
+\lstlistoflistings
 
 \newpage
 \addcontentsline{toc}{chapter}{Glossary}

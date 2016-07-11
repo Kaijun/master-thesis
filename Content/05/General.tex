@@ -90,7 +90,7 @@ Webpack is a tool which could analyse the dependencies of the project and bundle
 \subsubsection{Automated Development Process}
 To make the development of client app independent, it will start a dev server on its own for development purpose. However the dev server started by client app and the actual server are running on different ports. Which means that the communication between them will cause CORS problem.
 
-CORS means, a resource makes a cross-origin HTTP request when it requests a resource from a different domain than the one which the first resource itself serves. For security reasons, browsers restrict cross-origin HTTP requests initiated from within scripts. cite!!!!!!!!!!
+CORS means, a resource makes a cross-origin HTTP request when it requests a resource from a different domain than the one which the first resource itself serves. For security reasons, browsers restrict cross-origin HTTP requests initiated from within scripts. \cite{CORS}
 
 Through configuring the dev server started by Webpack, a proxy could established to forward request to the actual back-end server. As figure \ref{fig:proxy-server-imp} shows, the client is able now to request APIs under the same domain, and requests will go though the dev server, after that they are forwarded to the actual server.
 
