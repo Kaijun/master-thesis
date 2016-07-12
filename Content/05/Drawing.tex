@@ -47,7 +47,7 @@ Figure \ref{fig:drawing-tool-arc-imp} illustrates an overview of the drawing too
   \label{fig:drawing-tool-arc-imp}
 \end{figure}
 
-\subsubsection{StyleManager}
+\subsubsection{Style Manager}
 At the startup of drawing tool, \textit{StyleManager} is instantiated. \textit{StyleManager} receives the the config instance, in which the DOM elements with relevant styling functionalities are defined. And in the \textit{init()} function of \textit{StyleManager}, listeners for the DOM elements are created. If the DOM elements are triggered by user, \textit{StyleManager} will apply the chosen style to the active objects on the Canvas.
 
 Code list \ref{list:style-manager-imp} takes the listener for DOM element of color picker, which is used for changing the color of a object on Canvas. It acquires the reference of color picker DOM from the config instance, and starts listening for the \textit{onchange} event. If the \textit{onchange} event is fired, the listener will set the object's \textit{fill} property to the color value. Afterwards, the canvas is re-rendered and the active object with new color is shown up.
@@ -76,7 +76,7 @@ class StyleManager {
 \end{lstlisting}
 
 
-\subsubsection{FeatureManager \& Extensible Features}
+\subsubsection{Feature Manager \& Extensible Features}
 
 In addition, a \textit{FeatureManager} is also created for managing different drawing functionalities. The basic idea of \textit{FeatureManager} is quite similar as \textit{StyleManager} mentioned above. It also listens for the DOM elements to toggle different drawing behaviours.
 

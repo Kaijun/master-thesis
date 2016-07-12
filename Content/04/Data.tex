@@ -6,7 +6,7 @@ In this section, data modelling of the system including definitions of data doma
 \subsubsection{ Data Domain }
 In general, data in the system could be divided into 4 primary domains:
 
-\begin{enumerate}
+\begin{itemize}
 \item
 \textbf{User}: personal information as well as user identifier for accessing the system.
 \item
@@ -16,7 +16,7 @@ In general, data in the system could be divided into 4 primary domains:
 \item
 \textbf{Answer}: data with information of answers, also has graphical data within the data model.
 
-\end{enumerate}
+\end{itemize}
 
 Users are able to assess the contributions made by other users and mark it as useful or useless, which will affect the contributions' oder priority while rendering the views. Voters should also be aware of what kind of vote he has marked to the contribution. Therefore, additional 2 data models \textbf{VoteAnswer} and \textbf{VoteQuestion} should also be considered. 
 
@@ -97,7 +97,7 @@ In table \ref{http-method-on-user-resource}, resource entry in persistent storag
 Requesting a specific resource can only succeed through its \gls{URI}, through which the client and server-side could connect to each other actually. Therefore, a definition of APIs which describes \gls{URI} of the resources and its functional responsibility should be proposed in the first place.
 
 
-\begin{enumerate}
+\begin{itemize}
 \item
 \textbf{User Authentication}: the major actions of user authentication include signup, login, logout. To protect the user information, POST method which doesn't expose information via the URL, is highly recommended.
 
@@ -165,7 +165,7 @@ URI                                 & Method         & Description              
 \label{table:answer-resources-apis}
 \end{table}
 
-\end{enumerate}
+\end{itemize}
 
 Once all APIs with different HTTP methods are defined, a more concrete data structure over the APIs between two sides should be promised and confirmed. By following defined APIs and promised data structure, developments on both client and server-side could be executed parallelly.
 

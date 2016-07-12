@@ -54,13 +54,13 @@ The general conception of the wrapped Canvas is illustrated in figure \ref{fig:w
 \end{figure}
 % wrapped canvas, multiple shapes, modify -> rerender.
 The wrapped Canvas has a list of objectified elements which are visible on Canvas. Now there are new definitions for rendering, modification of an objectified element:
-\begin{enumerate}
+\begin{itemize}
 \item
 \textbf{Rendering Canvas}: the list of elements maintained by wrapped Canvas will be traversed and each element will be rendered by calling the native drawing method of Canvas. Position and style of the element in Canvas refer to the properties of its object.  
 \item
 \textbf{Modification or Removal}: In case the methods for modifying or removing provided by element object in wrapped Canvas are fired, the whole Canvas will be re-rendered in the same way of rendering the Canvas initially.
 
-\end{enumerate}
+\end{itemize}
 Now rendering means that the list of elements maintained by wrapped canvas is traversed and each elements are 
 
 \subsubsection{Data Model Exported By Wrapped Canvas}

@@ -5,12 +5,12 @@ According to the analysis result of Single-Page-App in chapter \ref{chapter:stat
 
 In general, the entire system will be divided into two parts: namely client and server-side. Each side is basically full independent to the other and has its own responsibility. 
 
-\begin{enumerate}
+\begin{itemize}
 \item
 \textbf{Client}: The client is totally responsible for initial view rendering and view re-rendering as the view model changes. 
 \item
 \textbf{Server}: The server is in charge of core business logic, data processing, data persistence and also provides the client interfaces for data acquisition.
-\end{enumerate}
+\end{itemize}
 
 % General Architecture of System including Server(data persistence with db) + Client(has multiple views, one template engine, re-render with new data.)
 \begin{figure}[!htbp]
@@ -25,12 +25,12 @@ General architecture of the system is described in figure \ref{fig:general-archi
 \subsection{Communication} \label{subsection:concept-general-communication}
 As mentioned above in section \ref{sec:concept-general-architecture}, data communication is the only coupling factor in the general architecture. In this system, there exist two different type of protocols: standard HTTP using REST architecture and WebSocket with persistent connection. Each data transmission protocol has its own responsibility and usage scenario.
 
-\begin{enumerate}
+\begin{itemize}
 \item
 \textbf{HTTP with REST architecture}: Data which is requested initiatively is transferred over HTTP. The HTTP connection will be closed as soon as the data is successfully transferred.
 \item
 \textbf{WebSocket with persistent connection}: Reactive data with realtime need is transferred over WebSocket. After the persistent connection is established, client are able to receive the data at the first moment as the state of data is updated. 
-\end{enumerate}
+\end{itemize}
 
 % Pic broadcast to multiple clients with different events. engine to rerender
 \begin{figure}[!htbp]
