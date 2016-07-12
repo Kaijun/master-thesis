@@ -10,8 +10,9 @@
 \contentsline {lstlisting}{\numberline {5.5}Server starts listening for requests over WebSocket protocol}{47}
 \contentsline {lstlisting}{\numberline {5.6}Server starts listening for requests over WebSocket protocol}{47}
 \contentsline {lstlisting}{\numberline {5.7}Router in client app}{49}
-\contentsline {lstlisting}{\numberline {5.8}Serialized Canvas by Fabric.js}{51}
-\contentsline {lstlisting}{\numberline {5.9}Main process of StyleManager}{52}
-\contentsline {lstlisting}{\numberline {5.10}Main process of FeatureManager}{52}
+\contentsline {lstlisting}{\numberline {5.8}Rendering \textit {CourseView} with multiple \textit {CourseCard} components}{49}
+\contentsline {lstlisting}{\numberline {5.9}Serialized Canvas by Fabric.js}{52}
+\contentsline {lstlisting}{\numberline {5.10}Main process of StyleManager}{53}
+\contentsline {lstlisting}{\numberline {5.11}Main process of FeatureManager}{54}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
