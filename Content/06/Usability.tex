@@ -1,0 +1,42 @@
+Usability testing refers to evaluating a product or service by testing it with representative users. In principle, during a usability test, participants  will evaluate the system with quantitive metrics. 
+
+The goal of usability testing is to collect the quantitive data, analyse the result and issue the usability problems with tested system. 
+
+\subsection{System Usability Scale}
+
+The System Usability Scale (SUS) offers a "quick and dirty", but relative reliable approach for measuring the usability\cite{brooke1996sus}.  It contains a 10 item questionnaire with five rating options for participants; from \textit{strongly agree} to \textit{strongly disagree}.
+
+
+In order to calculate the SUS score, score contributions from each item should be calculated once separately at first. Score contribution will range from 0 to 4. For items with odd number, the score contribution should minus 1. For item with even number, the contribution is 5 minus the score. The sum of all scores is multiplied by 2.5 to obtain the overall value of SUS, which has a range of 0 to 100.
+
+\begin{equation}
+\label{formular:SUS}
+SUS_{sum} = 2.5 \times \left (  \sum_{ i=1}^{5} \left ( a_{2i-1} - 1 \right ) + \sum_{ i=1}^{5} \left ( 5 - a_{2i} \right ) \right ) 
+\end{equation}
+
+
+\begin{table}[!htbp]
+\centering
+\begin{tabularx}{\textwidth}{@{}lXXXXXl@{}}
+\toprule
+Item(No.)   & A  & B  & C  & D  & E          & Average Score        \\ \midrule
+1               & 3  & 4  & 3  & 4  & 4          & 3.6                     \\
+2               & 2  & 1  & 1  & 1  & 2          & 1.4                     \\
+3               & 5  & 4  & 4  & 5  & 4          & 4.4                     \\
+4               & 1  & 2  & 1  & 2  & 2          & 1.6                     \\
+5               & 4  & 4  & 3  & 4  & 5          & 4                     \\
+6               & 4  & 5  & 4  & 3  & 4          & 4                     \\
+7               & 5  & 4  & 4  & 5  & 5          & 4.6                     \\
+8               & 3  & 3  & 2  & 1  & 3          & 2.4                     \\
+9               & 5  & 4  & 3  & 4  & 5          & 4.2                     \\
+10              & 2  & 3  & 2  & 1  & 2          & 2                     \\ \bottomrule        
+\end{tabularx}
+\caption{Score of SUS table}
+\label{table:score-sus}
+\end{table}
+
+For the SUS testing of Graphicuss system, 5 participants are involved in the interview with SUS questionnaire, which is listed in appendix \ref{appendix:sus}. Each participant gives his own score contribution for each item, and the average score of each item is calculated. Table \ref{table:score-sus} shows the result.
+
+According to the formula \ref{formular:SUS}, the final sum SUS score of the system is \textbf{73.5}.
+
+\cite{bangor2009determining} 
