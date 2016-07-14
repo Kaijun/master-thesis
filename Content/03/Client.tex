@@ -1,0 +1,47 @@
+\subsection{Ember.js}
+
+Ember.js is a popular framework that utilizes a MVC framework composed of views in the form of handlebars templates. In this section, note that there is a bit of work to do in order to facilitate the integration of the templates, models, and controllers. This is not to say that Ember.js is a bad framework, because modification is a byproduct of such a framework.
+
+In Listing 1-1, which is the body of the TodoMVC Ember.js example, you see that the markup consists of two handlebars templates for the to-do list and the to-dos.
+
+Along with these there are three controllers—an app.js entry point, a router,
+and a todo input view component. That seems like a lot of files, but in a production environment, that would be minimized. Note the separation of the controllers and views. The views, including the to-do list view shown in Listing 1-2, are quite verbose and make it easy to determine what the code does.
+
+
+This is a clear example and works as a readable view. There are several properties that are dictated from the controller as you would expect. The controller is named in the router.js file, which also names the view to be used. This controller is shown in the Listing 1-3.
+
+You can see that this TodosListController takes a model of to-dos and adds some properties along with the itemController of 'todo'. This todo controller is actually where most of the JavaScript resides that dictates the actions and conditionals that are visible in the view you saw earlier in this section. As someone who is familiar with Ember. js, this is a well defined and organized example of what Ember.js can do. It is however quite different than React, which you will see soon enough. First, let’s examine a bit of the AngularJS TodoMVC example.
+
+\subsection{AngularJS}
+
+AngularJS is perhaps the world’s most popular MV* framework. It is extremely simple to get started and has the backing of Google along with many developers who have jumped in and created great tutorials, books, and blog posts. It is of course not the same framework as React, which you will soon see. Listing 1-4 shows the AngularJS TodoMVC application.
+
+You can see already that compared to Ember.js, Angular is more declarative in nature in its templating. You can also see that there are concepts like controllers, directives, and services that are tied to this application. The todoCtrl file holds the controller values that power this view. The next example, shown in Listing 1-5, is just a snippet of this file, but you can see how it works.
+
+
+This example showcases the todoCtrl and shows how it builds a \$scope mechanism that then allows you to attach methods and properties to your AngularJS view. The next section dives into React and explains how it acts on a user interface in a different way than Ember.js and AngularJS do.
+
+
+\subsection{React}
+
+As you saw in the other examples, there is a basic structure to the TodoMVC applications that makes them an easy choice for demonstrating differences. Ember.js and AngularJS are two popular frameworks that I think help demonstrate that React is not an MV* framework and just a basic JavaScript framework for building user interfaces. This section details the React example and shows you how to structure a React app from the component level, and then works backward to explain how the components are composed. And now, many pages into a book about React, you finally get to see React code in Listing 1-6.
+
+In this example, you see the rendering of the TodoItem component, which is a
+subcomponent of the TodoApp. This is simply a component that handles the individual list 14
+
+items that are contained in the TodoApp. This is split off into its own component because
+it represents its own set of interactions in the application. It can handle editing as well as marking if the item is completed or not. Since this functionality doesn’t necessarily need to know or interact with the rest of the application, it is built as a standalone component. It may have been just as easy to add to the TodoApp itself initially, but in the world of React, as you will see later, it is often better to make things more modular. This is because in the future the maintenance costs will be recouped by utilizing this logical separation of interactions.
+Now you understand at a high level how interactions can often be contained in subcomponents in a React application. The code of the TodoApp render function shows that the TodoItem exists as a subcomponent and shows that the TodoFooter, contained in a JSX by itself, houses its own interactions. The next important concept is to focus on how these subcomponents are reassembled. The TodoItems are added to an unordered list that is contained in a variable called main, which returns the JSX markup for the main section of the TodoApp. Similarly the footer variable contains the TodoFooter component. These two variables, footer and main, are added to the return value of the TodoApp, which you see at the end of the example. These variables are accessed in JSX by using curly braces so you see them as follows:
+
+
+\subsection{Why React.js}
+
+In many cases when you learn something, you first need to realize what the thing is that you are learning. In the case of React, it can be helpful to learn which concepts are not parts of the React framework. This will help you understand which standard practices you have learned need to be unlearned, or at least need to be set aside, in order to fully understand the concepts of a new framework such as React. So what is it that makes React different and why is it important?
+
+Many argue that React is a full-scale JavaScript framework on a level that compares to other frameworks such as Backbone, Knockout.js, AngularJS, Ember, CanJS, Dojo, or any of the numerous MVC frameworks that exist. Figure 1-1 shows an example of a typical MVC framework.
+
+Figure 1-1 shows the basics of each of the components in a Model-View-Controller architecture. The model handles the state of the application and sends state-changing events to the view. The view is the user-facing look and interaction interface to the end user. The view can send events to the controller, and in some cases to the model. The controller is the main dispatcher of events, which can be sent to the model, to update state, and the view to update the presentation. You may note that this is a generic representation of what an MVC architecture is, and in reality there are so many variants and customized implementations that there is no single MVC architecture. The point isn’t to state what an MVC structure looks like, but to point out what React is not.
+
+This MVC structure is actually not a fair assessment of what React is or intends to be. That is because React is one particular piece of what these frameworks present. React is in its simplest form, just the view of these MVC, MVVM, or MV* frameworks. As you saw in the previous section, React is a way to describe the user interface of an application and a mechanism to change that over time as data changes. React is made with declarative components that describe an interface. React uses no observable data binding when building an application. React is also easy to manipulate, because you can take the components you create and combine them to make custom components that work as you expect every time because it can scale. React can scale better than other frameworks because of the principles that drove it from its creation. When creating React interfaces, you structure them in such as way that they are built out of multiple components.
+
+Let’s pause for a minute and examine the most basic structure of several frameworks and then compare them to React in order to highlight the differences. For each of the frameworks, you will examine the most basic to-do list applications as they are created for the http://todomvc.com web site. I am not going to deride other frameworks because they all serve a purpose. Instead I attempt to demonstrate how React is structured compared to the others. I showcase just the important parts to highlight and limit a complete recreation of the application here. If you want to see the full examples, the links to the source are included. Try not to become too focused on the implementation details of any of these examples, including the React example, because as you progress through this book the concepts will be covered thoroughly and will help you understand what is going on completely.

@@ -7,3 +7,50 @@
 
 
 % http://smus.com/canvas-vs-svg-performance/
+
+
+\subsection{Canvas}
+
+The canvas element is an element defined in HTML code using width and height attributes. The real power of the canvas element, however, is accomplished by taking advantage of the HTML5 Canvas API. This API is used by writing JavaScript that can access the canvas area through a full set of drawing functions, thus allowing for dynamically generated graphics.
+
+Every HTML5 canvas element must have a context. The context defines what HTML5 Canvas API you’ll be using. The 2d context is used for drawing 2D graphics and manipulating bitmap images. The 3d context is used for 3D graphics creation and manipulation. The latter is actually called WebGL and it’s based on OpenGL ES.
+
+The Canvas coordinate system, however, places the origin at the upper-left corner of the canvas, with X coordinates increasing to the right and Y coordinates increasing toward the bottom of the canvas. So unlike a standard Cartesian coordinate space, the Canvas space doesn’t have visible negative points. Using negative coordinates won’t cause your application to fail, but objects positioned using negative coordinate points won’t appear on the page.
+
+
+\subsection{SVG}
+
+SVG is an XML language, similar to XHTML, which can be used to draw graphics, such as the ones shown to the right. It can be used to create an image either by specifying all the lines and shapes necessary, by modifying already existing raster images, or by a combination of both. The image and its components can also be transformed, composited together, or filtered to change their appearance completely.
+
+SVG came about in 1999 after several competing formats had been submitted to the W3C and failed to be fully ratified. While the specification has been around for quite a while, browser adoption has been fairly slow, and so there is not a lot of SVG content being used on the web right now (as of 2009). Even the implementations that are available often are not as fast as competing technologies like HTML5 Canvas or Adobe Flash as a full application interface. SVG does offer benefits over both implementations, some of which include having a DOM interface available for it, and not requiring third-party extensions. Whether or not to use it often depends on your specific use case.
+
+HTML provides elements for defining headers, paragraphs, tables, and so on. In much the same way SVG provides elements for circles, rectangles, and simple and complex curves. A simple SVG document consists of nothing more than the <svg> root element and several basic shapes that build a graphic together. In addition there is the <g> element, which is used to group several basic shapes together.
+
+There are a number of drawing applications available such as Inkscape which are free and use SVG as their native file format. However, this tutorial will rely on the trusty XML or text editor (your choice). The idea is to teach the internals of SVG to those who want to understand it, and that is best done by dirtying your hands with a bit of markup. You should note your final goal though. Not all SVG viewers are equal and so there is a good chance that something written for one app will not display exactly the same in another, simply because they support different levels of the SVG specification or another specification that you are using along with SVG (that is, JavaScript or CSS).
+
+SVG is supported in all modern browsers and even a couple versions back in some cases. A fairly complete browser support table can be found on Can I use. Firefox has supported some SVG content since version 1.5, and that support level has been growing with each release since. Hopefully, along with the tutorial here, MDN can help developers keep up with the differences between Gecko and some of the other major implementations.
+
+\subsection{Comparision}
+HTML5 Canvas is simply a drawing surface for a bit-map. You set up to draw (Say with a color and line thickness), draw that thing, and then the Canvas has no knowledge of that thing: It doesn't know where it is or what it is that you've just drawn, it's just pixels. If you want to draw rectangles and have them move around or be selectable then you have to code all of that from scratch, including the code to remember that you drew them.
+
+SVG on the other hand must maintain references to each object that it renders. Every SVG/VML element you create is a real element in the DOM. By default this allows you to keep much better track of the elements you create and makes dealing with things like mouse events easier by default, but it slows down significantly when there are a large number of objects
+
+Those SVG DOM references mean that some of the footwork of dealing with the things you draw is done for you. And SVG is faster when rendering really large objects, but slower when rendering many objects.
+
+A game would probably be faster in Canvas. A huge map program would probably be faster in SVG. If you do want to use Canvas, I have some tutorials on getting movable objects up and running here.
+
+Canvas would be better for faster things and heavy bitmap manipulation (like animation), but will take more code if you want lots of interactivity.
+
+I've run a bunch of numbers on HTML DIV-made drawing versus Canvas-made drawing. I could make a huge post about the benefits of each, but I will give some of the relevant results of my tests to consider for your specific application:
+
+I made Canvas and HTML DIV test pages, both had movable "nodes." Canvas nodes were objects I created and kept track of in Javascript. HTML nodes were movable Divs.
+
+I added 100,000 nodes to each of my two tests. They performed quite differently:
+
+The HTML test tab took forever to load (timed at slightly under 5 minutes, chrome asked to kill the page the first time). Chrome's task manager says that tab is taking up 168MB. It takes up 12-13\% CPU time when I am looking at it, 0% when I am not looking.
+
+The Canvas tab loaded in one second and takes up 30MB. It also takes up 13\% of CPU time all of the time, regardless of whether or not one is looking at it. (2013 edit: They've mostly fixed that)
+
+Dragging on the HTML page is smoother, which is expected by the design, since the current setup is to redraw EVERYTHING every 30 milliseconds in the Canvas test. There are plenty of optimizations to be had for Canvas for this. (canvas invalidation being the easiest, also clipping regions, selective redrawing, etc.. just depends on how much you feel like implementing)
+
+There is no doubt you could get Canvas to be faster at object manipulation as the divs in that simple test, and of course far faster in the load time. Drawing/loading is faster in Canvas and has far more room for optimizations, too (ie, excluding things that are off-screen is very easy).

@@ -5,3 +5,26 @@
 % Short-Polling, Long-Polling
 % WebSocket
 % WebRTC
+
+
+\subsection{Long poll}
+Creates connection to server like AJAX does, but keep-alive connection open for some time (not long though), during connection open client can receive data from server. Client have to reconnect periodically after connection is closed due to timeouts or data eof. On server side it is still treated like HTTP request same as AJAX, except the answer on request will happen now or some time in the future defined by application logic. Supported in all major browsers.
+
+
+\subsection{WebSockets}
+
+Create TCP connection to server, and keep it as long as needed. Server or client can easily close it. Client goes through HTTP compatible handshake process, if it succeeds, then server and client can exchange data both directions at any time. It is very efficient if application requires frequent data exchange in both ways. WebSockets do have data framing that includes masking for each message sent from client to server so data is simply encrypted. 
+
+
+\subsection{WebRTC}
+
+Transport to establish communication between clients and is transport-agnostic so uses UDP, TCP or even more abstract layers. By design it allows to transport data in reliable as well as unreliable ways. This is generally used for high volume data transfer such as video/audio streaming where reliability - is secondary and few frames or reduction in quality progression can be sacrificed in favour of response time and at least delivering something. Both sides (peers) can push data to each other independently. While it can be used totally independent from any centralised servers it still require some way of exchanging endPoints data, where in most cases developers still use centralised servers to "link" peers. This is required only to exchange essential data for connection establishing - after connection is established server on aside is not required.
+
+
+\subsection{Advantages}
+
+Main advantage of WebSockets for server, is that it is not HTTP request (after handshake), but proper message based communication protocol. That allows you to achieve huge performance and architecture advantages. For example in node.js you can share the same memory for different socket connections, so that way they can access shared variables. So you don't need to use database as exchange point in the middle (like with AJAX or Long Polling and for example PHP). You can store data in RAM, or even republish between sockets straight away.
+
+\subsection{Security considerations}
+People often are concerned regarding security of WebSockets. Reality is that it makes little difference or even puts WebSockets as better option. First of all with AJAX there is a higher chance of MITM as each request is new TCP connection and traversing through internet infrastructure. With WebSockets, once it's connected it is far more challenging to intercept in between, with additionally enforced frame masking when data is streamed from client to server as well as additional compression, that requires more effort to probe data. All modern protocols support both: HTTP and HTTPS (encrypted).
+

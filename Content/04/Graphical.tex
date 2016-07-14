@@ -23,12 +23,12 @@ TDB
 A focus point in the thesis is how to store the graphical content submitted by users. In the traditional way, graphical data could only be stored either in file system or in the database with encoded format, for example Base64 encoded images. 
 
 \subsubsection{Deficiency of Canvas - Storable Image Data}
-Canvas provides a native method called \textit{getImageData()} to export the whole Canvas context including the size of Canvas and pixels on Canvas to an image data. The image data exported by canvas represents the underlying pixel data with the format of \textit{Uint8ClampedArray}. The \textit{Uint8ClampedArray} typed array represents an array of 8-bit unsigned integers clamped to 0-255 [reference], which implies the position of the pixel as the index of array and the color of pixel as value from 0 to 255. A example is taken in figure \ref{fig:canvas-imagedata} shows a Canvas with content and its simplified ImageData. 
+Canvas provides a native method called \textit{getImageData()} to export the whole Canvas context including the size of Canvas and pixels on Canvas to an image data. The image data exported by canvas represents the underlying pixel data with the format of \textit{Uint8ClampedArray}. The \textit{Uint8ClampedArray} typed array represents an array of 8-bit unsigned integers clamped to 0-255 [reference], which implies the position of the pixel as the index of array and the color of pixel as value from 0 to 255. A example is taken in figure \ref{fig:canvas-imagedata} shows a Canvas with size of 100x100 and its simplified ImageData. 
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/concept-canvas-imagedata.pdf}
+  \caption{Canvas to native ImageData}
   \label{fig:canvas-imagedata}
 \end{figure}
 
@@ -48,8 +48,8 @@ The general conception of the wrapped Canvas is illustrated in figure \ref{fig:w
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/concept-wrapped-canvas.pdf}
+  \caption{Concept of wrapped Canvas}
   \label{fig:wrapped-canvas}
 \end{figure}
 % wrapped canvas, multiple shapes, modify -> rerender.
@@ -69,8 +69,8 @@ canvas.
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/concept-wrapped-canvas-data.pdf}
+  \caption{Export and import of Canvas context with objectified elements}
   \label{fig:wrapped-canvas-data}
 \end{figure}
 % properties on objectified elements, -> data model (json) -> restore from data.
@@ -87,8 +87,8 @@ Because drawing elements in different shapes has distinct behaviors, so listener
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/concept-drawing-tool.pdf}
+  \caption{Lifecycle of drawing tool}
   \label{fig:drawing-tool-concept}
 \end{figure}
 % drawing tool, with diff drawing mode, start listener, stop old listener (life cycle).

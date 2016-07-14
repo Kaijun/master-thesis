@@ -2,7 +2,7 @@ On the whole, the implementation can be divided into two parts: client and serve
 
 
 \subsection{Platform and Framework}
-To achieve a better performance of view rendering on client side running in browser, ReactJS\footnote{https://facebook.github.io/react/} is taken as the front-end framework. Componentization, the main philosophy of ReactJS, also helps organize the views and view model logics. On the server side, ExpressJS\footnote{http://expressjs.com/} as a web framework is adopted for its efficiency and productivity of building RESTFul APIs.
+To achieve a better performance of view rendering on client side running in browser, React.js\footnote{https://facebook.github.io/react/} is taken as the front-end framework. Componentization, the main philosophy of ReactJS, also helps organize the views and view model logics. On the server side, ExpressJS\footnote{http://expressjs.com/} as a web framework is adopted for its efficiency and productivity of building RESTFul APIs.
 
 Since both client and server projects are primarily implemented in JavaScript, NodeJS\footnote{https://nodejs.org/} is the single development environment for either project implementation or project management on both sides.
 
@@ -71,8 +71,8 @@ An architectural overview of Graphicuss is illustrated in figure \ref{fig:genera
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/imp-general-arch.pdf}
+  \caption{General architecture}
   \label{fig:general-arch-imp}
 \end{figure}
 % Big Pic! Client with xuxian circle domain + React Engine -> Router in Express -> logic business + Database -> return 
@@ -96,8 +96,8 @@ Through configuring the dev server started by Webpack, a proxy could established
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/imp-proxy-server.pdf}
+  \caption{Proxy for client development server}
   \label{fig:proxy-server-imp}
 \end{figure}
 % Dev Process, in development(dev server, proxy) + building)
@@ -107,12 +107,12 @@ Through configuring the dev server started by Webpack, a proxy could established
 
 For the client app, multiple tasks are executed during the building process by using Webpack: transforming modern JavaScript code, pre-processing the modern CSS code and bundling the static files. All these tasks will significantly reduce the size of client app and also improve the compatibility of the app.
 
-The usage of Webpack on server app is quite different. It will bundle all dependencies with the server app. After processing on both sides, the final output of the files will be extracted into the \textit{dist} directory mentioned in \ref{fig:overview-file-structure}, which is now ready for deploying and serving. The whole building process is represented in figure \ref{fig:automated-building-imp}.
+Webpack also helps accelerate the building process by defining various automated building tasks. It will bundle all dependencies with the server app and client app. After processing on both sides, the final output of the files will be extracted into the \textit{dist} directory mentioned in \ref{fig:overview-file-structure}, which is now ready for deploying and serving. The whole building process is represented in figure \ref{fig:automated-building-imp}.
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/imp-automated-building.pdf}
+  \caption{Automated building process with Webpack}
   \label{fig:automated-building-imp}
 \end{figure}
 % Building Process, a->b->c->d xuxian kuang, Webpack compile, bundle, compress -> copy file to dist -> ready for deploy
@@ -126,8 +126,8 @@ For all persistence storage of data on the server side a MongoDB\footnote{https:
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=0.6\textwidth]{Figures/placeholder.png}
-  \caption{placeholder}
+    \includegraphics[width=1\textwidth]{Figures/concept-data-domain-relation.pdf}
+  \caption{Table of data model}
   \label{fig:data-model-table-imp}
 \end{figure}
 % Whole Concret Data Model Table
