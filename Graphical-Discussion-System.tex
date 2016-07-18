@@ -191,24 +191,102 @@
 \printglossary
 
 \begin{appendices}
+
+
+\newcolumntype{P}{>{\centering\arraybackslash}p{0.75cm}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}m{0.2\textwidth}}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}m{0.2\textwidth}}
+
+\newcommand{\printtblhdr}{%
+  \hfill
+  \begingroup
+  \setlength\tabcolsep{0pt}%
+  \begin{tabularx}{0.41\textwidth}{ @{} l *{3}X r @{} }
+    \multicolumn{2}{l}{\bfseries\shortstack[l]{Strongly\\ Disagree}}
+    &&
+    \multicolumn{2}{l}{\bfseries\shortstack[r]{Strongly\\ Agree}}
+    \\
+  \end{tabularx}
+  \endgroup
+}
+
+\newcommand{\usetbl}{%
+  \begin{tabular}{@{}|*5{P|}@{}}
+    \hline
+    1 & 2 & 3 & 4 & 5 \\
+    \hline
+  \end{tabular}
+}
+
+\newcommand\prop[1]{%
+  \item
+  \parbox[t]{0.5\textwidth}{#1}%
+  \qquad
+  \parbox[t]{0.5\textwidth}{\usetbl}%
+}
+
+
+
+
+
+
 \chapter{System Usability Scale Table} \label{appendix:sus}
 
-\begin{table}[!htbp]
-\centering
-\begin{tabular}{N{1cm}L{0.6\textwidth}C{0.3\textwidth}}
-\multicolumn{1}{l}{}  & &     \footnotesize \bfseries\parbox{0.14\textwidth}{Strongly\\ disagree}\parbox{0.14\textwidth}{\raggedleft Strongly agree} \tabularnewline
-&I think that I would like to use this system frequently                                   & \scaletable \tabularnewline
-&I found the system unnecessarily complex                                                  & \scaletable \tabularnewline
-&I thought the system was easy to use                                                      & \scaletable \tabularnewline
-&I think that I would need the support of a technical person to be able to use this system & \scaletable \tabularnewline
-&I found the various functions in this system were well integrated                         & \scaletable \tabularnewline
-&I thought there was too much inconsistency in this system                                 & \scaletable \tabularnewline
-&I would imagine that most people would learn to use this system very quickly              & \scaletable \tabularnewline
-&I found the system very cumbersome to use                                                 & \scaletable \tabularnewline
-&I felt very confident using the system                                                    & \scaletable \tabularnewline
-&I needed to learn a lot of things before I could get going with this system               & \scaletable \tabularnewline
-\end{tabular}
-\end{table}
+\printtblhdr
+
+\begin{enumerate}
+\prop{I think that I would like to use this system frequently}
+
+\prop{I found the system unnecessarily complex}
+
+\prop{I thought the system was easy to use}
+
+\prop{I think that I would need the support of a technical person to be able to use this system}
+
+\prop{I found the various functions in this system were well integrated}
+
+\prop{I thought there was too much inconsistency in this system}
+
+\prop{I would imagine that most people would learn to use this system very quickly}
+
+\prop{I found the system very cumbersome to use}
+
+\prop{I felt very confident using the system}
+
+\prop{I needed to learn a lot of things before I could get going with this system}
+
+\end{enumerate}
+
+
+
+
+\chapter{System Usability Interview} \label{appendix:interview}
+
+
+\printtblhdr
+
+\begin{enumerate}
+\prop{I could find the certain course created by tutor.}
+
+\prop{The process of asking a question or answering a question was simple.}
+
+\prop{Voting score helps me to locate the useful contribution.}
+
+\prop{With the drawing tool i could express the expected content precisely.}
+
+\prop{The drawing tool provided enough elements ready to drawn.}
+
+\prop{I found the history function(undo redo) of drwaing tool was really necessary.}
+
+\prop{Auto-ordering of answers was seamless and unconspicuous.}
+
+\prop{I found the real-time feature was interactive.}
+
+\prop{The real-time feature caused distraction while viewing the answers.}
+
+\end{enumerate}
+
+
 
 \end{appendices}
 
