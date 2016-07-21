@@ -7,9 +7,9 @@ With the increasing complexity of a web app and high demand of agile development
 \subsubsection{Early Age}
 At the early age of web development, the backend did all jobs for both client side(browser) and server side, such as rendering, calling system service, composing data, etc. Figure \ref{fig:3.1} shows the overview of web architecture:
 \begin{figure}[!htbp]
-  \caption{Web architecture in early age}
   \centering
-    \includegraphics[width=1\textwidth]{Figures/3_1.png}
+    \includegraphics[width=0.8\textwidth]{Figures/tech-web-arch-early.pdf}
+  \caption{Web architecture in early age}
   \label{fig:3.1}
 \end{figure}
 The advantage of this pattern is clear: The development and deployment are simple and straightforward, if the bussiness logic doesn't become complexer. But with the increasing complexity of the product, the problems shows up:
@@ -28,9 +28,9 @@ Along with the birth of Gmail\footnote{https://mail.google.com/} in 2004, which 
 The architecture in Web 2.0 generation is presented in figure \ref{fig:3.2}.
 
 \begin{figure}[!htbp]
-  \caption{Web 2.0 architecture}
   \centering
-    \includegraphics[width=1\textwidth]{Figures/3_2.png}
+    \includegraphics[width=0.8\textwidth]{Figures/tech-web-arch-2.pdf}
+  \caption{Web 2.0 architecture}
   \label{fig:3.2}
 \end{figure}
 
@@ -41,9 +41,9 @@ By using Ajax, the client has the ability to fetching data stream asynchronously
 With the evolution of web technologies and promotion of these technologies in modern browswers by brower vendors, a new web development model called \gls{SPA} was proposed and caught the developers' eye. The back-end is no more responsible for rendering and view controling, it only take charge of providing services for the front-end.
 
 \begin{figure}[!htbp]
-  \caption{SPA architecture}
   \centering
-    \includegraphics[width=1\textwidth]{Figures/3_3.png}
+    \includegraphics[width=0.8\textwidth]{Figures/tech-web-arch-spa.pdf}
+  \caption{SPA architecture}
   \label{fig:3.3}
 \end{figure}
 
@@ -52,9 +52,9 @@ The structure in figure \ref{fig:3.3} shows that the client side has the full co
 But more responsibility in front-end means more complexity. How to reduce the complexity and increace the maintainability of a front-end project becomes a significant problem. Developers come up with an new envolved variant of SPA as demonstrated in figure \ref{fig:3.4}.
 
 \begin{figure}[!htbp]
-  \caption{Components in SPA}
   \centering
-    \includegraphics[width=1\textwidth]{Figures/3_4.png}
+    \includegraphics[width=0.8\textwidth]{Figures/tech-web-arch-cmp.pdf}
+  \caption{Components in SPA}
   \label{fig:3.4}
 \end{figure}
 
@@ -80,35 +80,29 @@ But SPA also has its deficiencies:
 \item
 \textbf{\gls{SEO} unfriendly}: because the page are not directly rendered by server side, and the web crawlers are not able to run JavaScript codes like a browser does, the site could not be crawled properly under normal circumstances. So if SEO results really matter for the app, SPA is obviously not the best choice.
 \item
-\textbf{Excessive http connections}: all the data is acquired from different services through diversed \gls{API}s, thus multiple HTTP connections are established and performed parallelly, whose initial time of connections for partial data could be much more than a single connection in the traditional way. So it's highly needed to merge the services and find a balance between data model complexity and time consumption.
+\textbf{Excessive http connections}: all the data is acquired from different services through diverse \gls{API}s, thus multiple HTTP connections are established and performed parallelly, whose initial time of connections for partial data could be much more than a single connection in the traditional way. So it's highly needed to merge the services and find a balance between data model complexity and time consumption.
 \end{enumerate}
 
 
-\subsection{RESTful Interface}
+\subsection{RESTful Web Service}
+REST stands for REpresentational State Transfer. More than a decade after it was introduced, REST has become one of the most essential technologies for Web applications\cite{richardson2008restful}. REST is web standards based architecture which uses HTTP Protocol for data communication. It  centers upon resource  and a resource is accessed by a uniform interface using HTTP standard methods.
 
-REST is a simple way to organize interactions between independent systems. It's been growing in popularity since 2005, and inspires the design of services, such as the Twitter API. This is due to the fact that REST allows you to interact with minimal overhead with clients as diverse as mobile phones and other websites. In theory, REST is not tied to the web, but it's almost always implemented as such, and was inspired by HTTP. As a result, REST can be used wherever HTTP can.
+In REST architecture, a REST Server simply provides access as well as operations of resources, while a  REST client accesses and manipulates the resources by using different methods. Here URIs are used to locate the resources.
 
-The alternative is building relatively complex conventions on top of HTTP. Often, this takes the shape of entire new XML-based languages. The most illustrious example is SOAP. You have to learn a completely new set of conventions, but you never use HTTP to its fullest power. Because REST has been inspired by HTTP and plays to its strengths, it is the best way to learn how HTTP works.
 
-\subsubsection{URLs}
-URLs are how you identify the things that you want to operate on. We say that each URL identifies a resource. These are exactly the same URLs which are assigned to web pages. In fact, a web page is a type of resource. Let's take a more exotic example, and consider our sample application, which manages the list of a company's clients:
+The key principles, which make RESTful applications to be lean and fast, are listed as follows\cite{hamad2010performance}.
 
 \begin{itemize}
-  \item /clients: will identify all clients
-  \item /clients/jim: will identify the client, named 'Jim', assuming that he is the only one with that name.
+  \item \textbf{URI as identifier for resource}:  Through a RESTful web service, clients interact with the targets of the resources exposed. URIs are used as the identifier for resources, which provide a global addressing space for resource requesting and acquisition. 
+
+  \item \textbf{Uniform interface}:  A fixed set of four create, read, update, delete operations is used for manipulation of resources, which could also be represented by HTTP standard methods: PUT, GET, POST, and DELETE.  Retrieving the current state of a resource could be achieved by GET. PUT is for creating a new resource, which can be removed by using DELETE. A new state onto a resource is transferred if POST is used.
+
+  \item \textbf{Self-descriptive messages}:  Resources are decoupled from their representation. As a result, the content of the resource can be accessed in a variety of formats, such as HTML, plain text, JSON, and others.
+
+  \item \textbf{Stateful interactions through hyperlinks}:  Every interaction with a resource is stateless. However, several techniques are able to be applied to achieve the exchange of state, such as URI rewriting, cookies, and hidden form fields. State can be embedded in response messages to point to valid future states of the interaction\cite{tutorial6oracle}. 
+
+
 \end{itemize}
-
-
-
-In these examples, we do not generally include the hostname in the URL, as it is irrelevant from the standpoint of how the interface is organized. Nevertheless, the hostname is important to ensure that the resource identifier is unique all over the web. We often say you send the request for a resource to a host. 
-
-Finally, URLs should be as precise as needed; everything needed to uniquely identify a resource should be in the URL. You should not need to include data identifying the resource in the request. This way, URLs act as a complete map of all the data your application handles.
-
-\subsubsection{HTTP Verbs}
-
-HTTP verbs tell the server what to do with the data identified by the URL. The request can optionally contain additional information in its body, which might be required to perform the operation - for instance, data you want to store with the resource.
-
-If you've ever created HTML forms, you'll be familiar with two of the most important HTTP verbs: GET and POST. But there are far more HTTP verbs available. The most important ones for building RESTful API are GET, POST, PUT and DELETE. Other methods are available, such as HEAD and OPTIONS, but they are more rare (if you want to know about all other HTTP methods, the official source is IETF).
 
 
 

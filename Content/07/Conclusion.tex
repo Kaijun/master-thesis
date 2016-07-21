@@ -1,0 +1,29 @@
+\section{Conclusion}
+
+\subsection{Modern Web Application}
+
+The discuss system is the cornerstone, which provides users the basic functionalities for discussion such like authentication, questioning and answering. The Single-Page-Application architecture is applied while concepting and implementing this discussion system. Since the client application and server application are fully separated, the data definitions and data communication between two sides have also been discussed and implemented. RESTFul APIs within the system, which is used as a lightweight and universal web service for the data transmission, are designed and implemented on the server side.
+
+Implementation details of building the client application using \textit{React.js} are also described. The concept of \textit{Componentization} is introduced, namely, all the views are actually compositions of various components. Fine-grained components are defined with templates and data representation logic inside.
+
+In addition, in order to accelerate the development process, as well as the deployment process for further usage, an automated building workflow is also considered. 
+
+
+\subsection{Objectified Canvas}
+
+Graphical discussion contribution made by users, which is efficient for persistence purpose and is able to be restored back to the Canvas for the quote functionality, is the focus point of this thesis. For exploring the possibility, deficiencies of native Canvas are revealed. 
+
+Feasible approach to realize the feature mentioned above, an objectified Canvas is designed and implemented. Instead of exporting image data describing each pixel from native Canvas, the objectified Canvas outputs the graphical content to a serialized data  of all objects with various properties on its Canvas. 
+
+In the evaluation phase, the storing efficiency of graphical data exported from objectified Canvas has been proved. Comparing to the image data outputted from native Canvas, the size of data model exported from objectified Canvas is much smaller, if the amount of components doesn't reach the thresholds which is basically a relative huge number.
+
+
+\section{Future Work}
+
+Although the developed prototype of graphical discussion system covers the requirements and realizes the basic functionalities, some future researches and improvements are still needed to be done.
+
+\textbf{Notification System could be extended for the discussion system.} For now, users won't get notified if new answers are posted under their own questions. Therefore, a notification system is proposed. Users would also be able to subscribe a certain question or class he interested in for further notifications if new contributions are made under it.
+
+\textbf{More pre-defined shapes of components should be extended for the drawing tool.} According to the result of evaluation in section \ref{sec:eval-usability}, most user hold the idea that the preset of shapes in the drawing tool are far not enough. Therefore, the drawing tool should have provided more pre-defined components natively, which will significantly ease the drawing process and helps the user to express the precise; graphical content as expected. 
+
+\textbf{Divers stylings of text on the drawing tool should be implemented.} The developed drawing tool already provides the possibility to input textual content for now. However the current styling of the text is still circumscribed. At present, adjusting the size or color of the text is already possible. More stylings such as strikethrough, list format could be extended in the future. 

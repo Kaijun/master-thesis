@@ -11,30 +11,47 @@
 
 \subsection{Canvas}
 
-The canvas element is an element defined in HTML code using width and height attributes. The real power of the canvas element, however, is accomplished by taking advantage of the HTML5 Canvas API. This API is used by writing JavaScript that can access the canvas area through a full set of drawing functions, thus allowing for dynamically generated graphics.
+Canvas, which is added in HTML5 as a standard, is an element defined in HTML code with width and height attributes. Graphics can be drawn on Canvas by using HTML5 Canvas APIs via scripting in JavaScript. A full set of drawing functions and helper functions could be used for accessing or rendering pixels on the Canvas area, which also means graphics can be generated dynamically and programmatically. 
 
-Every HTML5 canvas element must have a context. The context defines what HTML5 Canvas API you’ll be using. The 2d context is used for drawing 2D graphics and manipulating bitmap images. The 3d context is used for 3D graphics creation and manipulation. The latter is actually called WebGL and it’s based on OpenGL ES.
+Every HTML5 canvas element must have a context. All HTML5 Canvas API to be used are defined within the context. There exits two different types of context in Canvas: 2d context  for drawing 2D graphic and 3d context for 3D graphics. The latter is actually called WebGL and it’s based on OpenGL ES.
 
-The Canvas coordinate system, however, places the origin at the upper-left corner of the canvas, with X coordinates increasing to the right and Y coordinates increasing toward the bottom of the canvas. So unlike a standard Cartesian coordinate space, the Canvas space doesn’t have visible negative points. Using negative coordinates won’t cause your application to fail, but objects positioned using negative coordinate points won’t appear on the page.
+The coordinate system of Canvas set the origin offset at the upper-left corner of the canvas, with X coordinates increasing to the right and Y coordinates increasing toward the bottom of the canvas. Which means, the Canvas space doesn’t have points with negative coordinates. 
+
+The significant features of Canvas are listed as follows:
+
+\begin{itemize}
+  \item \textbf{Interactivity}: Listeners for keyboard, mouse or touch event are able to be created in the context of Canvas. Users' actions can be captured and response will be made according to the action. 
+  \item \textbf{Flexibility}: A variety of shapes like line, rectangle, circle or even text are able to be painted on the Canvas using the native methods. It is also possible to add animations, even video or audio could to the Canvas.
+  \item \textbf{Browser/Platform Support}: Unlike Other graphic technology like Flash or Silverlight, which has a very restricted platform support, Canvas is supported by all major browsers which follows the HTML5 standard. In addition, it can be accessed on mobile devices via browser environment.
+  \item \textbf{Performance}: Rendering pixels on Canvas is much faster comparing to other graphic technologies on Web\cite{corcoran2011effective}.
+\end{itemize}
 
 
 \subsection{SVG}
 
-SVG is an XML language, similar to XHTML, which can be used to draw graphics, such as the ones shown to the right. It can be used to create an image either by specifying all the lines and shapes necessary, by modifying already existing raster images, or by a combination of both. The image and its components can also be transformed, composited together, or filtered to change their appearance completely.
+SVG is an XML language, similar to XHTML, which can be used to draw graphics, such as the ones shown to the right. It can be used to create an image either by specifying all the lines and shapes necessary, by modifying already existing raster images, or by a combination of both. The image and its components can also be transformed, composited together, or filtered to change their appearance completely\cite{SVGintro}.
 
-SVG came about in 1999 after several competing formats had been submitted to the W3C and failed to be fully ratified. While the specification has been around for quite a while, browser adoption has been fairly slow, and so there is not a lot of SVG content being used on the web right now (as of 2009). Even the implementations that are available often are not as fast as competing technologies like HTML5 Canvas or Adobe Flash as a full application interface. SVG does offer benefits over both implementations, some of which include having a DOM interface available for it, and not requiring third-party extensions. Whether or not to use it often depends on your specific use case.
+Similar with HTML, which provides various elements for defining different styles, SVG provides elements for circles, rectangles, and simple and complex curves. A simple SVG document consists of one \textit{<svg>} element as its root element and several children elements of basic shapes. The composition of elements in SVG builds the graphic. The code listing \ref{list:svg-example-tech} shows a simple example of a SVG element with one rectangle, one circle and a text inside it.
 
-HTML provides elements for defining headers, paragraphs, tables, and so on. In much the same way SVG provides elements for circles, rectangles, and simple and complex curves. A simple SVG document consists of nothing more than the <svg> root element and several basic shapes that build a graphic together. In addition there is the <g> element, which is used to group several basic shapes together.
+\begin{lstlisting}[language=HTML, caption=Simple Example of SVG elemnt, label={list:svg-example-tech}]
+<svg width="300" height="200" >
+  <rect width="100%" height="100%" fill="red" />
+  <circle cx="150" cy="100" r="80" fill="green" />
+  <text x="150" y="125" font-size="60" fill="white">SVG</text>
+</svg>
+\end{lstlisting}
 
-There are a number of drawing applications available such as Inkscape which are free and use SVG as their native file format. However, this tutorial will rely on the trusty XML or text editor (your choice). The idea is to teach the internals of SVG to those who want to understand it, and that is best done by dirtying your hands with a bit of markup. You should note your final goal though. Not all SVG viewers are equal and so there is a good chance that something written for one app will not display exactly the same in another, simply because they support different levels of the SVG specification or another specification that you are using along with SVG (that is, JavaScript or CSS).
 
-SVG is supported in all modern browsers and even a couple versions back in some cases. A fairly complete browser support table can be found on Can I use. Firefox has supported some SVG content since version 1.5, and that support level has been growing with each release since. Hopefully, along with the tutorial here, MDN can help developers keep up with the differences between Gecko and some of the other major implementations.
+SVG is natively supported in all modern browsers and also has a good compatibility with old broswers. 
 
 \subsection{Comparision}
-HTML5 Canvas is simply a drawing surface for a bit-map. You set up to draw (Say with a color and line thickness), draw that thing, and then the Canvas has no knowledge of that thing: It doesn't know where it is or what it is that you've just drawn, it's just pixels. If you want to draw rectangles and have them move around or be selectable then you have to code all of that from scratch, including the code to remember that you drew them.
 
-SVG on the other hand must maintain references to each object that it renders. Every SVG/VML element you create is a real element in the DOM. By default this allows you to keep much better track of the elements you create and makes dealing with things like mouse events easier by default, but it slows down significantly when there are a large number of objects
+\subsubsection{References to already drawn elements}
+Since HTML5 Canvas is simply a drawing surface for a bit-map and renders the graphics pixel by pixel, Canvas has no knowledge of the graphics it drew: It doesn’t persist any information of the graphics' properties such as shape, position or size after the graphics were successfully drawn.
 
+On the other hand, SVG maintains references to each object that it renders. Because each SVG element are created and appears in real DOM element on HTML. By default this allows tracking the SVG elements easily and manipulating the every existing element, for example, changing the size of an element or moving the element to another position.
+
+\subsubsection{Rendering Performance}
 Those SVG DOM references mean that some of the footwork of dealing with the things you draw is done for you. And SVG is faster when rendering really large objects, but slower when rendering many objects.
 
 A game would probably be faster in Canvas. A huge map program would probably be faster in SVG. If you do want to use Canvas, I have some tutorials on getting movable objects up and running here.

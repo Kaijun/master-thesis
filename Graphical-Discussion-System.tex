@@ -19,6 +19,13 @@
 \usepackage{pdfpages}
 \usepackage{appendix}
 
+% no indent on new paragraph, and set space
+\usepackage{parskip}
+%change the font
+\usepackage[sfdefault,light]{roboto}
+%\usepackage[sfdefault]{noto}
+\usepackage[T1]{fontenc}
+\renewcommand{\baselinestretch}{1.1}
 
 \usepackage{forest}
 
@@ -94,11 +101,6 @@
 
 
 
-
-
-
-% \renewcommand{\baselinestretch}{1.15}
-
 \input{Content/00/Glossar}
 \makeglossaries
 
@@ -115,10 +117,10 @@
 \cleardoublepage
 
 
-\TUDoption{abstract}{section}
-\begin{abstract}[pagestyle=empty.tudheadings]
-\input{Content/00/Abstract}
-\end{abstract}
+% \TUDoption{abstract}{section}
+% \begin{abstract}[pagestyle=empty.tudheadings]
+% \input{Content/00/Abstract}
+% \end{abstract}
 
 \tableofcontents
 
@@ -169,8 +171,7 @@
 
 
 \chapter{Conclusion and Future Work}
-\section{Conclusion}
-\section{Future Work}
+\input{Content/07/Conclusion}
 
 % At least to 72
 
@@ -186,9 +187,9 @@
 \addcontentsline{toc}{chapter}{List of Codes}
 \lstlistoflistings
 
-\newpage
-\addcontentsline{toc}{chapter}{Glossary}
-\printglossary
+% \newpage
+% \addcontentsline{toc}{chapter}{Glossary}
+% \printglossary
 
 \begin{appendices}
 
