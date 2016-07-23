@@ -44,46 +44,48 @@ Therefore, a workable solution should be concepted and new data model describing
 
 Even though Canvas has native methods to draw different shapes of elements, but Canvas only render them pixel by pixel, it knows nothing of the shapes that are drawn. Therefore, removal or modification of a already drawn element is not possible. In this condition, a feasible solution is to wrap the Canvas and objectify the original elements which could be stored and persisted in a stack. Furthermore, the wrapper on Canvas should also provide methods to render, modify, remove the custom elements. 
 
-The general conception of the wrapped Canvas is illustrated in figure \ref{fig:wrapped-canvas}.
+The general conception of the objectified Canvas is illustrated in figure \ref{fig:objectified-canvas}.
 
 \begin{figure}[!htbp]
   \centering
     \includegraphics[width=1\textwidth]{Figures/concept-wrapped-canvas.pdf}
-  \caption{Concept of wrapped Canvas}
-  \label{fig:wrapped-canvas}
+  \caption{Concept of objectified Canvas}
+  \label{fig:objectified-canvas}
 \end{figure}
-% wrapped canvas, multiple shapes, modify -> rerender.
-The wrapped Canvas has a list of objectified elements which are visible on Canvas. Now there are new definitions for rendering, modification of an objectified element:
+% objectified canvas, multiple shapes, modify -> rerender.
+The objectified Canvas has a list of objectified elements which are visible on Canvas. Now there are new definitions for rendering, modification of an objectified element:
 \begin{itemize}
 \item
-\textbf{Rendering Canvas}: the list of elements maintained by wrapped Canvas will be traversed and each element will be rendered by calling the native drawing method of Canvas. Position and style of the element in Canvas refer to the properties of its object.  
+\textbf{Rendering Canvas}: the list of elements maintained by objectified Canvas will be traversed and each element will be rendered by calling the native drawing method of Canvas. Position and style of the element in Canvas refer to the properties of its object.  
 \item
-\textbf{Modification or Removal}: In case the methods for modifying or removing provided by element object in wrapped Canvas are fired, the whole Canvas will be re-rendered in the same way of rendering the Canvas initially.
+\textbf{Modification or Removal}: In case the methods for modifying or removing provided by element object in objectified Canvas are fired, the whole Canvas will be re-rendered in the same way of rendering the Canvas initially.
 
 \end{itemize}
-Now rendering means that the list of elements maintained by wrapped canvas is traversed and each elements are 
+Now rendering means that the list of elements maintained by objectified canvas is traversed and each elements are 
 
-\subsubsection{Data Model Exported By Wrapped Canvas}
-Since the wrapped Canvas maintains a list of objects for elements, which also contain the properties such as position, color, size and so on, so the exporting of image data is now really simple. A composition of all objectified elements' properties is already enough to describe the whole canvas. Figure \ref{fig:wrapped-canvas-data} reveals the approach and data model output from wrapped 
+\subsubsection{Data Model Exported By Objectified Canvas}
+Since the objectified Canvas maintains a list of objects for elements, which also contain the properties such as position, color, size and so on, so the exporting of image data is now really simple. A composition of all objectified elements' properties is already enough to describe the whole canvas. Figure \ref{fig:objectified-canvas-data} reveals the approach and data model output from objectified 
 canvas.
 
 \begin{figure}[!htbp]
   \centering
     \includegraphics[width=1\textwidth]{Figures/concept-wrapped-canvas-data.pdf}
   \caption{Export and import of Canvas context with objectified elements}
-  \label{fig:wrapped-canvas-data}
+  \label{fig:objectified-canvas-data}
 \end{figure}
 % properties on objectified elements, -> data model (json) -> restore from data.
 
-After converting all elements in wrapped canvas, the new data model is much more efficient for storing comparing to the raw image data. The wrapped Canvas will also provides a method to restore the output data, create new objectified elements by giving the properties of the data model, and re-render the elements into original Canvas pixel by pixel. With this approach, the feature of modification on elements while quoting other contributions could also be achieved. 
+After converting all elements in objectified canvas, the new data model is much more efficient for storing comparing to the raw image data. The objectified Canvas will also provides a method to restore the output data, create new objectified elements by giving the properties of the data model, and re-render the elements into original Canvas pixel by pixel. With this approach, the feature of modification on elements while quoting other contributions could also be achieved. 
 
 \subsection{Drawing Tool}
 
-After the conception of a feasible wrapped canvas as base of the container for all elements, a drawing tool which provides user interfaces to draw variable shapes as well as texts should be designed in the next step. 
+After the conception of a feasible objectified canvas as base of the container for all elements, a drawing tool which provides user interfaces to draw variable shapes as well as texts should be designed in the next step. 
 
 First of all, user interfaces for selecting different drawing mode like drawing circle, rectangle or line should be designed. Buttons for toggling various drawing modes are the best choice in this case.
 
 Because drawing elements in different shapes has distinct behaviors, so listeners for each specific drawing mode should be defined. When the button for toggling drawing mode is clicked by user and specific drawing mode is activated, the correlative listener will be initiated. Clicking events or moving events of the mouse on Canvas will be captured and processed. Meanwhile, drawing behaviors are also performed according the mouse events fired by user.
+
+Figure \ref{fig:drawing-tool-concept} illustrated the conception of drawing tool with user interfaces and life cycle of event listeners for each drawing mode.
 
 \begin{figure}[!htbp]
   \centering
@@ -92,5 +94,3 @@ Because drawing elements in different shapes has distinct behaviors, so listener
   \label{fig:drawing-tool-concept}
 \end{figure}
 % drawing tool, with diff drawing mode, start listener, stop old listener (life cycle).
-
-Figure \ref{fig:drawing-tool-concept} illustrated the conception of drawing tool with user interfaces and life cycle of event listeners for each drawing mode.

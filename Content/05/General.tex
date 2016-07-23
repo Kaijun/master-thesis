@@ -2,9 +2,9 @@ On the whole, the implementation can be divided into two parts: client and serve
 
 
 \subsection{Platform and Framework}
-To achieve a better performance of view rendering on client side running in browser, React.js\footnote{https://facebook.github.io/react/} is taken as the front-end framework. Componentization, the main philosophy of ReactJS, also helps organize the views and view model logics. On the server side, ExpressJS\footnote{http://expressjs.com/} as a web framework is adopted for its efficiency and productivity of building RESTFul APIs.
+To achieve a better performance of view rendering on client side running in browser, React.js\footnote{https://facebook.github.io/react/ - accessed 10 July 2016} is taken as the front-end framework. Componentization, the main philosophy of ReactJS, also helps organize the views and view model logics. On the server side, ExpressJS\footnote{http://expressjs.com/ - accessed 12 July 2016} as a web framework is adopted for its efficiency and productivity of building RESTFul APIs.
 
-Since both client and server projects are primarily implemented in JavaScript, NodeJS\footnote{https://nodejs.org/} is the single development environment for either project implementation or project management on both sides.
+Since both client and server projects are primarily implemented in JavaScript, NodeJS\footnote{https://nodejs.org/ - accessed 12 July 2016} is the single development environment for either project implementation or project management on both sides.
 
 \subsubsection{File Structure}
 
@@ -63,7 +63,7 @@ To have a basic understanding of whole project including the server side and cli
 
 \subsubsection{Module Management}
 
-NodeJS provides native module management which is called \textit{npm}\footnote{https://www.npmjs.com}. Third party libraries, which are published in the official remote repository, can be installed conveniently by only using npm's command line. There is also a list of names of all modules and dependencies in the file \textit{package.json}. Installing all dependencies and modules can be simply achieved by using only one command line \textit{npm install}, which will significantly ease the setting up process of the project freshly on a new machine.
+NodeJS provides native module management which is called \textit{npm}\footnote{https://www.npmjs.com - accessed 12 July 2016}. Third party libraries, which are published in the official remote repository, can be installed conveniently by only using npm's command line. There is also a list of names of all modules and dependencies in the file \textit{package.json}. Installing all dependencies and modules can be simply achieved by using only one command line \textit{npm install}, which will significantly ease the setting up process of the project freshly on a new machine.
 
 \subsection{Architecture}
 
@@ -83,7 +83,7 @@ Not only the URL but also the parameters passed by client, for example the ident
 As soon as the data is successfully returned, the HTTP connection will be closed. The client processes data acquired from server, and represents it by re-rendering views. So far, a entire request over HTTP is accomplished.
 
 \subsection{Automatization}
-To accelerate the developing as well as building process of the project, a automatization tool called \textit{Webpack}\footnote{https://webpack.github.io/} is used. 
+To accelerate the developing as well as building process of the project, a automatization tool called \textit{Webpack}\footnote{https://webpack.github.io/ - accessed 13 July 2016} is used. 
 
 Webpack is a tool which could analyse the dependencies of the project and bundle modules with the app. In addition, it can also do tasks like compressing JavaScript codes to reduce the size of the client app, or compiling modern JavaScript as well as CSS codes to achieve the compatibility for old browsers.
 
@@ -120,7 +120,7 @@ Webpack also helps accelerate the building process by defining various automated
 \subsection{Storage Structure} \label{subsec:storage-structure-imp}
 In section \ref{sec:data-concept}, data domains and fields of data domains  have already been defined. 
 
-For all persistence storage of data on the server side a MongoDB\footnote{https://www.mongodb.com/} database is used.  In figure \ref{fig:data-model-table-imp}, more concrete definition of data model table is defined. MongoDB is a non-SQL database, which uses document oriented storage and JSON style data model. That will make it easy to implement as well as scale data models. In addition, An \gls{ORM} framework called Mongoose\footnote{http://mongoosejs.com/} is also applied to the implementation, which encapsulates the native database operations of MongoDB. With help of the \gls{ORM} framework, definition of schema and query on database will be quite simple. 
+For all persistence storage of data on the server side a MongoDB\footnote{https://www.mongodb.com/ - accessed 13 July 2016} database is used.  In figure \ref{fig:data-model-table-imp}, more concrete definition of data model table is defined. MongoDB is a non-SQL database, which uses document oriented storage and JSON style data model. That will make it easy to implement as well as scale data models. In addition, An \gls{ORM} framework called Mongoose\footnote{http://mongoosejs.com/ - accessed 13 July 2016} is also applied to the implementation, which encapsulates the native database operations of MongoDB. With help of the \gls{ORM} framework, definition of schema and query on database will be quite simple. 
 
 % Description othe the table?
 

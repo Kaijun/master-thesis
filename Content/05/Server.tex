@@ -63,7 +63,9 @@ Since the templates are rendered on the client side, the view layer is just simp
 
 \subsubsection{Achitecture of Server}
 
-The figure \ref{fig:server-arch-imp} illustrates an overview of the server's architecture. 
+The figure \ref{fig:server-arch-imp} illustrates an overview of the server's architecture. Requests from the client side are handeled with \textit{Router} component in the first place. HTTP headers are parsed and analysed, afterwards, the request is dispatched by \textit{Router} according to the URL matching rules and then forwarded to the correlative \textit{Controller}.
+
+\textit{Controller} layer requests as well as operates the data records stored in database by using the methods defined in \textit{Model} layer. As the request is successfully handeled and data is prepared, \textit{Controller} responds with an HTTP response message to the client.
 
 \begin{figure}[!htbp]
   \centering
@@ -124,7 +126,7 @@ Other data models like \textit{Question} and \textit{Answer} are quite same as \
 The goal of authentication is confirming the identity of an user and controll the access of resources by checking the privilege of an user. So an authentication system is also designed for security reasons.
 
 \subsubsection{JWT based Authentication}
-JSON Web Token (JWT)\footnote{https://jwt.io/} is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
+JSON Web Token (JWT)\footnote{https://jwt.io/ - accessed 15 July 2016} is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
 
 
 \begin{figure}[!htbp]
@@ -136,7 +138,7 @@ JSON Web Token (JWT)\footnote{https://jwt.io/} is an open standard (RFC 7519) th
 % JWT process! request login -> verification success -> generate token with secret -> write token to cookie -> response. all request after login with token!-> jwt verify!, logout -> remove token!
 
 
-The basic idea of JWT based Authentication in the server side of Graphicuss is shown in figure \ref{jwp-process-imp}. After that the user sends request to login with its identifier and password and the the authentication is successfully verified, JWT will encode the user information with a secret key to a token.
+The basic idea of JWT based Authentication in the server side of Graphicuss is shown in figure \ref{fig:jwt-process-imp}. After that the user sends request to login with its identifier and password and the the authentication is successfully verified, JWT will encode the user information with a secret key to a token.
 
 \begin{lstlisting}[language=JavaScript, caption=JWT encodes user information with secret key, label={list:jwt-encode-imp}]
 var token = jwt.sign(userInfo, authConfig.jwtSecret)
@@ -161,7 +163,7 @@ So a \textit{if} statement will be executed before the operations on resources i
 
 
 \subsection{WebSocket Implementation}
-For the implementation of real-time functionality, a library called Socket.io\footnote{http://socket.io/} which a fast and reliable real-time engine is used. 
+For the implementation of real-time functionality, a library called Socket.io\footnote{http://socket.io/ - accessed 15 July 2016} which a fast and reliable real-time engine is used. 
 
 As described in section \ref{sec:realtime-concept}, at the start of server, an instance of Socket.io will be created for listening for WebSocket requests within specific namespace. Following code list \ref{list:server-websocket-course-listen-imp} shows the main process of listener created for real-time questions under a specific course.
 
