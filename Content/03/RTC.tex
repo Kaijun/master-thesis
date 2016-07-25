@@ -8,25 +8,25 @@
 
 
 \subsection{Long polling}
-HTTP Long-polling is a technique used to push updates from server to client. Establishing a connection to server using long polling is like AJAX, but the difference is that the keep-alive connection opens for a certain time period. During the connection persisted, client can retrieve data from the server connected. In case that the connection is closed or timeout unexpectedly, client have to keep requesting periodically in order to reconnect to the Server. On the server side, long polling requests are still treated as HTTP requests same as AJAX. 
+HTTP Long-polling is a technique used to push updates from server to client. Establishing a connection to the server using long polling is like AJAX, but the difference is that the keep-alive connection opens for a certain time period. During the connection persisted, the client can retrieve data from the server connected. In case that the connection is closed or timeout unexpectedly, the client has to keep requesting periodically in order to reconnect to the Server. On the server side, long polling requests are still treated as HTTP requests same as AJAX. 
 
 Since long polling only uses normal HTTP requests, it is supported in all major browsers.
 
 
 \subsection{WebSockets}
 
-WebSockets is an advanced technology that provides the possibility to open an interactive communication session between client and server\cite{Websocket}. With the WebSockets API, messages are able to be transmitted to a server and event-driven responses can be returned to client without having to poll the server for a reply.
+WebSockets is an advanced technology that provides the possibility to open an interactive communication session between client and server\cite{Websocket}. With the WebSockets API, messages are able to be transmitted to a server and event-driven responses can be returned to the client without having to poll the server for a reply.
 
-Starting a WebSockets connection will create TCP connection to server firstly, and keep it as long as needed. The connection can be easily closed by either by server or by client. After the HTTP compatible handshake process has succeeded,  data could be exchanged bi-directionally between server and client. Therefore, WebSockets is suitable for the heavy requirements on frequent data exchange bi-directionally. In addition, message sent through WebSockets is simply encrypted\cite{pimentel2012communicating}.
+Starting a WebSockets connection will create a TCP connection to server in the first place, and keep it as long as needed. The connection can be easily closed by either by server or by client. After the HTTP compatible handshake process has succeeded,  data could be exchanged bi-directionally between server and client. Therefore, WebSockets is suitable for the heavy requirements on frequent data exchange bi-directionally. In addition, message sent through WebSockets is simply encrypted\cite{pimentel2012communicating}.
 
 
 \subsection{WebRTC}
 
 WebRTC is an industry and standards effort to put real-time capabilities into browser to browser communication and make these capabilities accessible to web developers via standard HTML5 tags and JavaScript APIs\cite{johnston2012webrtc}. 
-WebRTC is used to enable the communication between multiple clients. By design, WebRTC allows to transport data in reliable as well as unreliable ways. This is generally used for high volume data transfer such as video/audio streaming where reliability is secondary and few frames or reduction in quality progression can be sacrificed in favour of response time. Both sides (peers) are able to push data to each other independently.
+WebRTC is used to enable the communication between multiple clients. By design, WebRTC allows to transport data in reliable as well as unreliable ways. This is generally used for high volume data transfer such as video/audio streaming where reliability is secondary and few frames or reduction in quality progression can be sacrificed in favor of response time. Both sides (peers) are able to push data to each other independently.
 
 \subsection{Advantages}
 
-The primary advantage of WebSockets is that the connection is not normal HTTP request, but proper message based communication protocol. That allows you to achieve huge performance and architecture advantages. Comparing to long polling, there is no need to start connection mutiple times while using WebSockets. Since the time consumption of establishing a connection is the major part of the total time consumption of a request, reducing the connection numbers will significantly improve the performance and efficiency. 
+The primary advantage of WebSockets is that the connection is not a normal HTTP request, but the proper message based communication protocol. That allows you to achieve huge performance and architecture advantages. Comparing to long polling, there is no need to start connecting multiple times while using WebSockets. Since the time consumption of establishing a connection is the major part of the total time consumption of a request, reducing the connection numbers will significantly improve the performance and efficiency. 
 
 However, WebRTC is only used for peer to peer connection, but not client to server. Therefore, it is out of the scope of this thesis in general.

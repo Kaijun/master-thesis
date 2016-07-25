@@ -2,9 +2,9 @@
 \subsection{Evaluation Approach}
 
 \subsubsection{Compressed Image Data From Canvas}
-In the section \ref{sec:graphical-data-serialization-concept} the raw output from native Canvas is briefly described. The data exported by the method \textit{getImageData()} contains all values of each pixel without any compression. However, native Canvas also provides a method called \textit{toDataURL()}, which is able to export the image data with specific image format. The default type is \textit{image/png}.
+In the section \ref{sec:graphical-data-serialization-concept} the raw output from native Canvas is briefly described. The data exported by the method \textit{getImageData()} contains all values of each pixel without any compression. However, native Canvas also provides a method called \textit{toDataURL()}, which is able to export the image data with the specific image format. The default type is \textit{image/png}.
 
-As a result, using \textit{toDataURL()} could achieve the compressed image  of a Canvas. Since the image format \textit{PNG} uses lossless compression which combines the LZ77-based DEFLATE algorithm\footnote{https://en.wikipedia.org/wiki/DEFLATE - accessed 119 July 2016} with a selection of domain-specific prediction filters, \textit{PNG} format is chosen as the format of output image data  from Canvas for the evaluation\cite{barron1998minimum}. An example of the image data exported by calling \textit{toDataURL()} is shown in code listing \ref{list:toDataURL-eval}.
+As a result, using \textit{toDataURL()} could achieve the compressed image  of a Canvas. Since the image format \textit{PNG} uses lossless compression, which combines the LZ77-based DEFLATE algorithm\footnote{https://en.wikipedia.org/wiki/DEFLATE - accessed 119 July 2016} with a selection of domain-specific prediction filters, \textit{PNG} format is chosen as the format of output image data  from Canvas for the evaluation\cite{barron1998minimum}. An example of the image data exported by calling \textit{toDataURL()} is shown in code listing \ref{list:toDataURL-eval}.
 
 
 \begin{lstlisting}[language=JavaScript, caption=Example of image data while calling toDataURL() , label={list:toDataURL-eval}]
@@ -19,7 +19,7 @@ The serialized graphical data model adopted in Graphicuss system is presented in
 
 \begin{itemize}
   \item \textbf{Size of Canvas}: two different sizes \textit{800*600} and \textit{400*300} of Canvas are defined.
-  \item \textbf{Amount of Components}: various amount of components are drawn on the native Canvas and objectified Canvas in two different sizes.
+  \item \textbf{Amount of Components}: various amounts of components are drawn on the native Canvas and objectified Canvas in two different sizes.
 \end{itemize}
 
 The comparison is following the measurement process as below:
@@ -45,7 +45,7 @@ In general, four tests are performed for both types of Canvas in two different s
 
 Though four tests are executed, the figure \ref{fig:eval-size} shows only three curves or lines. The reason is that the results of objectified Canvas in two sizes are nearly same and overlap themselves on the figure. So the yellow line represents both results of objectified Canvas in  two sizes.
 
-In overview, the data size is correlate with the size of Canvas and amount of components drawn on Canvas. Therefore, both dimensions are analysed separately in the following part.
+In overview, the data size correlates with the size of Canvas and amount of components drawn on Canvas. Therefore, both dimensions are analyzed separately in the following part.
 
 \subsubsection{Dimension: Size of Canvas}
 
@@ -64,6 +64,6 @@ In overview, the data size is correlate with the size of Canvas and amount of co
 
 \textbf{Within a certain amount of components, the distribution of image data's size from native Canvas is logarithmic}. As the test shows, if less than about 1400 components are drawn on the native Canvas in size of 800*600, or less than 500 components in size of 400*300, the increment of data size is logarithmic due to the algorithm of image compression. With the increasing amount of components, the Canvas is getting more and more complex, the data size becomes greater as well.  
 
-\textbf{Size of image data from native Canvas starts decreasing slightly after the amount of components reached its threshold}. Since all the randomly drawn components are all rendered in the single color black, almost all the pixels are in black if huge amount of components are drawn on the Canvas. Therefore, the complexity of the image is reduced. As a result, the compression of image data plays its role effectively and the size of image data decreases.
+\textbf{Size of image data from native Canvas starts decreasing slightly after the amount of components reached its threshold}. Since all the randomly drawn components are all rendered in the single color black, almost all the pixels are in black if huge amount of components is drawn on the Canvas. Therefore, the complexity of the image is reduced. As a result, the compression of image data plays its role effectively and the size of image data decreases.
 
 \textbf{In general, data model from objectified Canvas is much more efficient for storing than native Canvas}. As presented in the figure, if the amount of components is less than about 1650 components in size of 800*600, or less than 400 components in size of 400*300, the data model from objectified Canvas achieves much better efficiency in storing. When the amount of components reached the thresholds, then the native Canvas gains the upper hand. However, in the real world, normal users won't paint such a huge amount of components on a single Canvas.

@@ -1,16 +1,16 @@
-In this section, data modelling of the system including definitions of data domain, data fields for each domain, and relation between domains will be performed in the first place. In the following subsection, APIs corresponding to related operations on data models will be assigned.
+In this section, data modelling of the system, including definitions of data domain, data fields for each domain, and relation between domains will be performed in the first place. In the following subsection, APIs corresponding to related operations on data models will be assigned.
 
 \subsection{General Data Model}
 
 
 \subsubsection{ Data Domain }
-In general, data in the system could be divided into 4 primary domains:
+In general, the data in the system could be divided into 4 primary domains:
 
 \begin{itemize}
 \item
 \textbf{User}: personal information as well as user identifier for accessing the system.
 \item
-\textbf{Course}: a container with own course information as well as collection of questions classified to this context.
+\textbf{Course}: a container with own course information as well as a collection of questions classified in this context.
 \item
 \textbf{Question}:  data with information of questions submitted by users.
 \item
@@ -18,9 +18,9 @@ In general, data in the system could be divided into 4 primary domains:
 
 \end{itemize}
 
-Users are able to assess the contributions made by other users and mark it as useful or useless, which will affect the contributions' oder priority while rendering the views. Voters should also be aware of what kind of vote he has marked to the contribution. Therefore, additional 2 data models \textbf{VoteAnswer} and \textbf{VoteQuestion} should also be considered. 
+Users are able to assess the contributions made by other users and mark it as useful or useless, which will affect the contributions' order priority while rendering the views. Voters should also be aware of what kind of vote he has marked to the contribution. Therefore, additional 2 data models \textbf{VoteAnswer} and \textbf{VoteQuestion} should also be considered. 
 
-The relation between domains is illustrated in the following figure \ref{fig:data-domain-relation}. Each data modal has an unique identifier, which is referenced in another data model when they have a connection. 
+The relation between domains is illustrated in the following figure \ref{fig:data-domain-relation}. Each data model has a unique identifier, which is referenced in another data model when they have a connection. 
 
 \begin{figure}[!htbp]
   \centering
@@ -35,7 +35,7 @@ The relation between domains is illustrated in the following figure \ref{fig:dat
 
 \subsubsection{ Data Fields }
 
-More detailed definition and description of fields in each data model should be made for a better understanding of the structure as well as behaviour of a data model. Tabel \ref{table:data-field-table} describes key fields of general domains.
+More detailed definition and description of fields in each data model should be made for a better understanding of the structure as well as the behavior of a data model. Table \ref{table:data-field-table} describes key fields of general domains.
 
 
 \begin{table}[]
@@ -43,17 +43,17 @@ More detailed definition and description of fields in each data model should be 
 \begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
 Domain                    & Field           & Description                                                                                    \\ \midrule
-\multirow{4}{*}{User}     & email           & unique identifier of an user for authentification, also as contact way to user.                \\
+\multirow{4}{*}{User}     & email           & unique identifier of a user for authentification, also as contact way to user.                \\
                           & password        & string for user authentication to prove identity or access approval                            \\
                           & username        & user identifier shown to other users                                                           \\
                           & isTutor         & flag which determines if the user is a student or tutor                                        \\ \midrule
 \multirow{4}{*}{Course}   & name            & name of the course                                                                             \\
                           & desc            & description of the course                                                                      \\
                           & creator         & id of the user(tutor) who created this course                                                  \\
-                          & code            & unique code for quick search purpose which is generated automatically as the course is created \\ \midrule
+                          & code            & unique code for the quick search purpose which is generated automatically as the course is created \\ \midrule
 \multirow{5}{*}{Question} & title           & title of the question                                                                          \\
                           & content         & content of the question                                                                        \\
-                          & course          & id of the the course to which the question belongs                                             \\
+                          & course          & id of the course to which the question belongs                                             \\
                           & vote            & vote count of the question                                                                     \\
                           & creator         & id of the user who submitted this question                                                     \\ \midrule
 \multirow{5}{*}{Answer}   & content         & content of the answer                                                                          \\
@@ -62,7 +62,7 @@ Domain                    & Field           & Description                       
                           & vote            & vote count of the answer                                                                       \\
                           & creator         & id of the submitter                                                                            \\ \midrule
 \multirow{3}{*}{Vote}     & type            & enum values of up-voting or down-voting actions                                                \\
-                          & handler         & id of the hander                                                                               \\
+                          & handler         & id of the handler                                                                               \\
                           & question/answer & id of the question/answer to which the vote action is applied                                  \\ \midrule
 \end{tabularx}
 \caption{Fields for Each Data Domain}
@@ -74,17 +74,17 @@ Domain                    & Field           & Description                       
 
 As mentioned in section xxx, RESTful architecture is a an excellent technical choice for data transferring. Because of its simplicity and clear semantic description of HTTP methods comparing to other protocols such like SOAP, it will dramatically simplify and clarify our data transmission services. 
 
-\subsubsection{ Mapping of HTTP methods to data model behaviour }
-The data model defined above can directly map to the definition of resources in RESTful. The HTTP methods on each resource domain can also represent the data model behaviours, \textbf{\textit{User Model}} is taken as an example: 
+\subsubsection{ Mapping of HTTP methods to data model behavior}
+The data model defined above can directly map to the definition of resources in RESTful. The HTTP methods on each resource domain can also represent the data model behaviors, \textbf{\textit{User Model}} is taken as an example: 
 \begin{table}[!htbp]
 \centering
 \begin{tabularx}{\textwidth}{@{}lX@{}}
 \toprule
 Method        & {Operation of data model collection }                            \\ \midrule
-GET           & {Query and return a specific user from user model collection.}   \\
-POST          & {Create a new user entry and insert into user model collection.} \\
-PUT           & {Update a specific user in user model collection.}               \\
-DELETE        & {Delete a specific user in user model collection.}               \\ \bottomrule
+GET           & {Query and return a specific user from the user model collection.}   \\
+POST          & {Create a new user entry and insert into the user model collection.} \\
+PUT           & {Update a specific user in the user model collection.}               \\
+DELETE        & {Delete a specific user in the user model collection.}               \\ \bottomrule
 \end{tabularx}
 \caption{HTTP methods on User resource}
 \label{table:http-method-on-user-resource}
@@ -123,7 +123,7 @@ URI          & Method & Description                                             
 \begin{tabularx}{\textwidth}{@{}llX@{}}
 \toprule
 URI                 & Method         & Description                                                                                                          \\ \midrule
-/courses            & GET/POST       & request the whole collection of courses; create course with data submitted \\
+/courses            & GET/POST       & request the whole collection of courses; create a course with data submitted \\
 /courses/:courseId & GET/PUT/DELETE & request, modify, remove specific entry of course                                                                     \\ \bottomrule
 \end{tabularx}
 \caption{Course Resource APIs}
@@ -131,7 +131,7 @@ URI                 & Method         & Description                              
 \end{table}
 
 \item
-\textbf{Questions}: in a real sense question resource is attached to course resource. According to the best practise of RESTful API design [reference xxx], question resource could be touched under course URI, \textit{/courses/:courseId/questions/:questionId}. But in the real world, question resource has its own collection, and \textit{questionId} is the unique identifier, through which a specific question entry could be selected without using  
+\textbf{Questions}: in a real sense question resource is attached to the course resource. According to the best practice of RESTful API design [reference xxx], question resource could be touched under course URI, \textit{/courses/:courseId/questions/:questionId}. But in the real world, question resource has its own collection, and \textit{questionId} is the unique identifier, through which a specific question entry could be selected without using  
 \textit{courseId}. So an optimized conception is simply using \textit{/questions} as URI instead. And pass \textit{courseId} as a query parameter while requesting collection of question entries under a specific course. 
 \begin{table}[!htbp]
 \centering

@@ -49,7 +49,7 @@ For the implementation of the client application, \textit{React.js} which aims t
 
 \begin{itemize}
   \item 
-  \textbf{components/}: all components are defined by extending basic \textit{React.Compoent}. Each custom component has an \textit{index.js}, which processes the logics of view rendering and applies view model to the template. \textit{style.css} defines the CSS style of the HTML DOMs within a component.
+  \textbf{components/}: all components are defined by extending basic \textit{React.Compoent}. Each custom component has an \textit{index.js}, which processes the logics of view rendering and applies view models to the template. \textit{style.css} defines the CSS style of the HTML DOMs within a component.
   \item 
   \textbf{containers/}: containers are compositions of components.
   \item 
@@ -71,7 +71,7 @@ An overview of the client application's architecture is revealed in figure \ref{
 \end{figure}
 % client arch, App -> router containes rotes -> different container -> components(Compisition... for containers!) xuxian for layer (App, router, container, components)
 
-In the React application, \textit{Router} is also regarded  as a component, in which different matching rules of URL are defined. If the URL requested by user is matched, a correlate view will be rendered according to the definition of routes. Code list \ref{list:router-client-imp} shows the implementation of defining a \textit{Router} component.
+In the React application, \textit{Router} is also regarded  as a component, in which different matching rules of the URL are defined. If the URL requested by the user is matched, a correlate view will be rendered according to the definition of routes. Code list \ref{list:router-client-imp} shows the implementation of defining a \textit{Router} component.
 
 \begin{lstlisting}[language=HTML, caption=Router in client app , label={list:router-client-imp}]
 <Router history={history}>
@@ -84,16 +84,16 @@ In the React application, \textit{Router} is also regarded  as a component, in w
 </Router>
 \end{lstlisting}
 
-Containers such like \textit{CourseView}, \textit{QuestionsView} or \textit{AnswersView} are compositions of components in fact. The way how component acquires view model is that the parent component pass values to its child component by defining the properties of the child component. So the data flow starts from the root component and goes through every child components. 
+Containers such like \textit{CourseView}, \textit{QuestionsView} or \textit{AnswersView} are compositions of components in fact. The way how component acquires view model is that the parent component passes values to its child component by defining the properties of the child component. So the data flow starts from the root component and goes through every child component. 
 
-How to manage the data flow and control the rendering behaviour will be discussed later in the sub section \ref{subsection:data-flow-react-imp}.
+How to manage the data flow and control the rendering behavior will be discussed later in the sub section \ref{subsection:data-flow-react-imp}.
 
 
 \subsection{Composition of Components}
 
 \subsubsection{React Component}
 
-Defining a new \textit{Component} with React.js must extent the \textit{React.Component} class and implement the \textit{render()} function, which will be called when the component is instantiated. Afterwards, the template as well as the composition of components are rendered to plain HTML.  A simplfied example of building a \textit{CourseView} component is represented in code list \ref{list:course-view-render-imp}.
+Defining a new \textit{Component} with React.js must extend the \textit{React.Component} class and implement the \textit{render()} function, which will be called when the component is instantiated. Afterwards, the template as well as the composition of components are rendered to plain HTML.  A simplified example of building a \textit{CourseView} component is represented in code list \ref{list:course-view-render-imp}.
 
 \begin{lstlisting}[language=HTML, caption=Rendering \textit{CourseView} with multiple \textit{CourseCard} components , label={list:course-view-render-imp}]
 class CoursesView extends React.Component {
@@ -112,7 +112,7 @@ class CoursesView extends React.Component {
 }
 \end{lstlisting}
 
-As mentioned above, the parent components pass data through as the properties of child components. Within the \textit{CoursesView}, \textit{courses} could be read from its properties which is defined while \textit{CourseView} is composed. In the \textit{render()} function of \textit{CourseView}, \textit{courses} are traversed and each single \textit{course} will be passed into the \textit{CourseCard} as its property. Which means, as \textit{CourseView} is rendered, all \textit{CourseCard} components within it will also call their own \textit{render()} functions with the data model passed in. Data flows from top to bottom, likewise, views are rendered from parent to children components.
+As mentioned above, the parent components pass data through as the properties of child components. Within the \textit{CoursesView}, \textit{courses} could be read from its properties which is defined while \textit{CourseView} is composed. In the \textit{render()} function of \textit{CourseView}, \textit{courses} are traversed and each single \textit{course} will be passed into the \textit{CourseCard} as its property. Which means, as \textit{CourseView} is rendered, all \textit{CourseCard} components within it will also call their own \textit{render()} functions with the data model passed in. Data flows from top to bottom, likewise, views are rendered from parent to child components.
 
 \subsubsection{Composition}
 \textit{Components} are the core of React. All each view and its view model of the client application is represented as a React \text{Component}. And the whole client app is actually a composition of React components. An example of \textit{CoursesView} is taken in figure \ref{fig:course-view-composition-imp}.
@@ -127,19 +127,19 @@ As mentioned above, the parent components pass data through as the properties of
 
 At the top of the view is a component called \textit{AppBar}, which is also composed with another component \textit{SearchBox}. \textit{ContentSection} is a container for the main content, which will be replaced and re-rendered if the context of router changes. In this example, the route \textit{/courses} is applied, and the component \textit{CourseView} is rendered into \textit{ContentSection}. 
 
-\textit{CourseView} is also a composition of components: a list of \textit{CourseCard} components and also other components such as submit button component and popover component for creating new course. 
+\textit{CourseView} is also a composition of components: a list of \textit{CourseCard} components and also other components such as submit button component and popover component for creating new courses. 
 
 In principle, building other views is the same approach. Composition of components constructs the all views. With fine-grained components, the client app becomes much extensible and maintainable.
 
 
 \subsection{Data Flow}\label{subsection:data-flow-react-imp}
 
-Since data is passed as properties of components from top to bottom in the React application, maintaining data models between components and the data flow through components is a problem. \textit{Flux}\footnote{http://facebook.github.io/flux/ - accessed 18 July 2016} is a architecture which aims to solve this problem. Data flows in single direction, which keeps the process simple and ensures the correctness of view rendering.
+Since data is passed as properties of components from top to bottom in the React application, maintaining data models between components and the data flow through components is a problem. \textit{Flux}\footnote{http://facebook.github.io/flux/ - accessed 18 July 2016} is a architecture which aims to solve this problem. Data flows in a single direction, which keeps the process simple and ensures the correctness of view rendering.
 
 There are four main concepts of Flux architecture: 
 \begin{itemize}
   \item 
-  \textbf{View}: view layer which references the data model and renders the data model into template.
+  \textbf{View}: view layer which references the data model and renders the data model into the template.
   \item 
   \textbf{Action}: action made by view, trigger for processing data model, for example a mouse click event.
   \item 
@@ -155,7 +155,7 @@ There are four main concepts of Flux architecture:
   \label{fig:flux-arch-imp}
 \end{figure}
 
-The main process of data flow in Flux architecture is illustrated in figure \ref{fig:flux-arch-imp}. The key of Flux is unidirectional data flow. For example, user wants to submit a new answer to a certain question in Graphicuss system, as soon as the new answer is synchronized with server side, the new answer will be rendered into the answer list attached to the question. The process of data flow in this case is described as follows:
+The main process of data flow in Flux architecture is illustrated in figure \ref{fig:flux-arch-imp}. The key of Flux is unidirectional data flow. For example, a user wants to submit a new answer to a certain question in Graphicuss system, as soon as the new answer is synchronized with the server side, the new answer will be rendered into the answer list attached to the question. The process of data flow in this case is described as follows:
 \begin{enumerate}
   \item 
   User submits a new answer, \textit{Action(NEW\_ANSWER)} is triggered.

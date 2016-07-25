@@ -5,7 +5,7 @@
 \subsection{Architecture}
 
 \subsubsection{MVC Pattern \& Project Structure}
-To separate the different layers of model, view and controller, \gls{MVC} pattern is used as the basic pattern of the architecture. In the model layer, all data model related concerns such as data shema definitions, data model validation as well as database operations are defined. And Controllers contain the core domain logics, process the data from model layer, and pass the result to view layer.
+To separate the different layers of model, view and controller, \gls{MVC} pattern is used as the basic pattern of the architecture. In the model layer, all data model related concerns such as data schema definitions, data model validation as well as database operations are defined. And Controllers contain the core domain logics, process the data from model layer, and pass the result to view layer.
 
 Since the templates are rendered on the client side, the view layer is just simply stripped. Therefore, basically the controllers response processed data to client side directly without rendering it to views. Figure \ref{fig:server-file-structure-imp} shows the overview of the server's  file structure which is featured with \gls{MVC} pattern.
 
@@ -53,7 +53,7 @@ Since the templates are rendered on the client side, the view layer is just simp
 \item
   \textbf{config/index.js}: config as well as constants for the server. It persists \textit{apiConfig} for example the common prefix of API URL and version of the API. And config for database including the database URL will be defined here as well. In addition, keys for encryption are also stored in the config file.
 \item
-  \textbf{config/routes.js}: rules for URL matching. All URL matching rules are defined in this file. Controllers are referenced here and a dispatcher for router will be instantiated. If any request meets the defined rule, the request will be forward to a correlative controller. 
+  \textbf{config/routes.js}: rules for URL matching. All URL matching rules are defined in this file. Controllers are referenced here and a dispatcher for router will be instantiated. If any request meets the defined rules, the request will be forwarded to a correlative controller. 
 \item
   \textbf{controllers/*}: controllers for processing specific requests.
 \item 
@@ -63,7 +63,7 @@ Since the templates are rendered on the client side, the view layer is just simp
 
 \subsubsection{Achitecture of Server}
 
-The figure \ref{fig:server-arch-imp} illustrates an overview of the server's architecture. Requests from the client side are handeled with \textit{Router} component in the first place. HTTP headers are parsed and analysed, afterwards, the request is dispatched by \textit{Router} according to the URL matching rules and then forwarded to the correlative \textit{Controller}.
+The figure \ref{fig:server-arch-imp} illustrates an overview of the server architecture. Requests from the client side are handled with \textit{Router} component in the first place. HTTP headers are parsed and analyzed, afterwards, the request is dispatched by \textit{Router} according to the URL matching rules and then forwarded to the correlative \textit{Controller}.
 
 \textit{Controller} layer requests as well as operates the data records stored in database by using the methods defined in \textit{Model} layer. As the request is successfully handeled and data is prepared, \textit{Controller} responds with an HTTP response message to the client.
 
@@ -84,7 +84,7 @@ In subsection \ref{subsec:storage-structure-imp} an overview of the storage stru
 
 \subsubsection{Data Model Schema}
 
-Not only the fields of each data model are defined, but also data type of each field should also be restricted. Mongoose will check the type of fields within a data model according to the definitions before a record is inserted into the database. 
+Not only the fields of each data model are defined, but also the data type of each field should also be restricted. Mongoose will check the type of fields within a data model according to the definitions before a record is inserted into the database. 
 
 \begin{lstlisting}[language=JavaScript, caption=Example: user schema definition within Mongoose, label={list:user-schema-def-imp}]
 import mongoose from 'mongoose'
@@ -98,10 +98,10 @@ const userSchema = mongoose.Schema({
 }, {timestamps: true});
 \end{lstlisting}
 
-Code list \ref{list:user-schema-def-imp} takes \textit{UserSchema} definition as an example. Fields like \textit{username}, \textit{email}, \textit{password} and \textit{faculty} are defined as \textit{String} type. Fileds like \textit{tutor} and \textit{admin} are using \text{Boolean} type for determining the role of a user. In addition, default value of an field could also be given if record is added without value on this field. And Mongoose also provides a set of configurations for processing the entry inserted. In the example, setting \textit{lowercase} on \textit{email} will transform all characters to lowercase, while setting \textit{trim} will stripped space symbols out of a string. Mongoose will not only validate the type of data model, but also check the uniqueness of the data field in the entire database if \textit{unique} is set to \textit{true}. 
+Code list \ref{list:user-schema-def-imp} takes \textit{UserSchema} definition as an example. Fields like \textit{username}, \textit{email}, \textit{password} and \textit{faculty} are defined as \textit{String} type. Fileds like \textit{tutor} and \textit{admin} are using \text{Boolean} type for determining the role of a user. In addition, the default value of a field could also be given if record is added without value in this field. And Mongoose also provides a set of configurations for processing the entry inserted. In the example, setting \textit{lowercase} on \textit{email} will transform all characters to lowercase, while setting \textit{trim} will stripped space symbols out of a string. Mongoose will not only validate the type of data model, but also check the uniqueness of the data field in the entire database if \textit{unique} is set to \textit{true}. 
 
 \subsubsection{Methods on Model Layer}
-In most cases, various operations are executed to acquire data from the database, modify data and even remove data in the database. Therefore, those data fetching or data processing tasks are implemented in the data model layer, which will also achieve the goal of seperation of concern. A example of \textit{Course} data model is taken in the following code list \ref{list:course-data-method-imp}.
+In most cases, various operations are executed to acquire data from the database, modify data and even remove data in the database. Therefore, these data fetching or data processing tasks are implemented in the data model layer, which will also achieve the goal of separation of concern. An example of \textit{Course} data model is taken in the following code list \ref{list:course-data-method-imp}.
 
 \begin{lstlisting}[language=JavaScript, caption=Example: user schema definition within Mongoose, label={list:course-data-method-imp}]
 courseSchema.statics.list = function() {
@@ -123,7 +123,7 @@ Other data models like \textit{Question} and \textit{Answer} are quite same as \
 
 
 \subsection{Authentication}
-The goal of authentication is confirming the identity of an user and controll the access of resources by checking the privilege of an user. So an authentication system is also designed for security reasons.
+The goal of authentication is confirming the identity of a user and controlling the access of resources by checking the privilege of a user. So an authentication system is also designed for security reasons.
 
 \subsubsection{JWT based Authentication}
 JSON Web Token (JWT)\footnote{https://jwt.io/ - accessed 15 July 2016} is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
@@ -138,7 +138,7 @@ JSON Web Token (JWT)\footnote{https://jwt.io/ - accessed 15 July 2016} is an ope
 % JWT process! request login -> verification success -> generate token with secret -> write token to cookie -> response. all request after login with token!-> jwt verify!, logout -> remove token!
 
 
-The basic idea of JWT based Authentication in the server side of Graphicuss is shown in figure \ref{fig:jwt-process-imp}. After that the user sends request to login with its identifier and password and the the authentication is successfully verified, JWT will encode the user information with a secret key to a token.
+The basic idea of JWT based Authentication in the server side of Graphicuss is shown in figure \ref{fig:jwt-process-imp}. After that the user sends a request to login with its identifier and password. After that the authentication is successfully verified, JWT will encode the user information with a secret key to a token.
 
 \begin{lstlisting}[language=JavaScript, caption=JWT encodes user information with secret key, label={list:jwt-encode-imp}]
 var token = jwt.sign(userInfo, authConfig.jwtSecret)
@@ -156,7 +156,7 @@ jwt.verify(token, authConfig.jwtSecret, function(err, decoded) {
 \subsubsection{Role Control \& Access Control}
 As defined in section \ref{subsec:storage-structure-imp}, each user has two fields called \textit{tutor} and \textit{admin}. An admin has full control of all resources while a tutor  is able to create a course and manage all resources under his course. Same as a normal user without any privileges, he could only maintain resources submitted by himself.
 
-So a \textit{if} statement will be executed before the operations on resources in order to determine the role of the user, or to verify if an user has the access to the specific resource.
+So a \textit{if} statement will be executed before the operations on resources in order to determine the role of the user, or to verify if a user has the access to the specific resource.
 
 
 % \subsection{Processing of Controller}
@@ -165,7 +165,7 @@ So a \textit{if} statement will be executed before the operations on resources i
 \subsection{WebSocket Implementation}
 For the implementation of real-time functionality, a library called Socket.io\footnote{http://socket.io/ - accessed 15 July 2016} which a fast and reliable real-time engine is used. 
 
-As described in section \ref{sec:realtime-concept}, at the start of server, an instance of Socket.io will be created for listening for WebSocket requests within specific namespace. Following code list \ref{list:server-websocket-course-listen-imp} shows the main process of listener created for real-time questions under a specific course.
+As described in section \ref{sec:real-time-concept}, at the start of server, an instance of Socket.io will be created for listening for WebSockets requests within a specific namespace. Following code list \ref{list:server-websocket-course-listen-imp} shows the main process of listener created for real-time questions under a specific course.
 
 \begin{lstlisting}[language=JavaScript, caption=Server starts listening for requests over WebSocket protocol , label={list:server-websocket-course-listen-imp}]
 var courseWS = io.of('/ws/courses/');
@@ -192,7 +192,7 @@ courseWS.on('disconnection', function(socket){
 /* --- Listening for Question is the same approach--- */
 \end{lstlisting}
 
-After the WebSocket listener is started, it will monitor the the event called \textit{course-to-listen}. As it is triggered, \textit{courseId} received from client will be mapped to the a list of socket objects which represent the users who are listening to this resource. After the client disconnets from the WebSocket, his socket object will be removed from the listening list. 
+After the WebSocket listener is started, it will monitor the the event called \textit{course-to-listen}. As it is triggered, \textit{courseId} received from client will be mapped to the a list of socket objects which represent the users who are listening to this resource. After the client disconnects from the WebSocket, his socket object will be removed from the listening list. 
 
 \begin{lstlisting}[language=JavaScript, caption=Server starts listening for requests over WebSocket protocol , label={list:server-websocket-course-emit-imp}]
 var sockets = courseSocketMap[courseId];
