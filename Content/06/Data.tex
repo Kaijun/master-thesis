@@ -7,7 +7,7 @@ In the section \ref{sec:graphical-data-serialization-concept} the raw output fro
 As a result, using \textit{toDataURL()} could achieve the compressed image  of a Canvas. Since the image format \textit{PNG} uses lossless compression, which combines the LZ77-based DEFLATE algorithm\footnote{https://en.wikipedia.org/wiki/DEFLATE - accessed 119 July 2016} with a selection of domain-specific prediction filters, \textit{PNG} format is chosen as the format of output image data  from Canvas for the evaluation\cite{barron1998minimum}. An example of the image data exported by calling \textit{toDataURL()} is shown in code listing \ref{list:toDataURL-eval}.
 
 
-\begin{lstlisting}[language=JavaScript, caption=Example of image data while calling toDataURL() , label={list:toDataURL-eval}]
+\begin{lstlisting}[language=JavaScript, caption=Example of image data exported fro native Canvas while calling toDataURL() , label={list:toDataURL-eval}]
 var canvas = document.getElementById("canvas");
 var dataURL = canvas.toDataURL();
 console.log(dataURL);

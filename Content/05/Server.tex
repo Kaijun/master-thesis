@@ -103,7 +103,7 @@ Code list \ref{list:user-schema-def-imp} takes \textit{UserSchema} definition as
 \subsubsection{Methods on Model Layer}
 In most cases, various operations are executed to acquire data from the database, modify data and even remove data in the database. Therefore, these data fetching or data processing tasks are implemented in the data model layer, which will also achieve the goal of separation of concern. An example of \textit{Course} data model is taken in the following code list \ref{list:course-data-method-imp}.
 
-\begin{lstlisting}[language=JavaScript, caption=Example: user schema definition within Mongoose, label={list:course-data-method-imp}]
+\begin{lstlisting}[language=JavaScript, caption=Example: defining static methods of data model within Mongoose, label={list:course-data-method-imp}]
 courseSchema.statics.list = function() {
   return this.find().sort('-createdAt').populate('creator').exec()
 }
@@ -194,7 +194,7 @@ courseWS.on('disconnection', function(socket){
 
 After the WebSocket listener is started, it will monitor the the event called \textit{course-to-listen}. As it is triggered, \textit{courseId} received from client will be mapped to the a list of socket objects which represent the users who are listening to this resource. After the client disconnects from the WebSocket, his socket object will be removed from the listening list. 
 
-\begin{lstlisting}[language=JavaScript, caption=Server starts listening for requests over WebSocket protocol , label={list:server-websocket-course-emit-imp}]
+\begin{lstlisting}[language=JavaScript, caption=Server broadcast to all sockets who has subscribed the certain resource, label={list:server-websocket-course-emit-imp}]
 var sockets = courseSocketMap[courseId];
 sockets.forEach(function(socket){
   socket.emit('questions-changed', newQuestions);
