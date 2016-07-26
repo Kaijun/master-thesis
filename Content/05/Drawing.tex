@@ -112,3 +112,12 @@ class TextFeature{
 \end{lstlisting}
 
 Features, namely drawing modes are highly extensible on the drawing tool. \textit{TextFeature} in code list \ref{list:feature-manager-imp} is an example. All feature classes need to implement two interfaces \textit{startListen()} and \textit{stopListen()} basically. In \textit{startListen()}, listeners for tracking mouse events are defined. And in \textit{stopListen()}, all listeners should be removed. Both functions will be called by \textit{FeatureManager} when this drawing mode is toggled.
+
+A screenshot of the implemented drawing tool is taken in figure \ref{fig:ss-editor}. On the top of the drawing tool, a toolbar, which enables different drawing features and styling settings, takes place. On the right side, a list for recording the history of drawing activities is also implemented.
+
+\begin{figure}[!htbp]
+  \centering
+    \frame{\includegraphics[width=0.9\textwidth]{Figures/ss-editor.png}}
+  \caption{Screenshot of the drawing tool}
+  \label{fig:ss-editor}
+\end{figure}

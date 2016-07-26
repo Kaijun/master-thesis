@@ -47,7 +47,7 @@ With the evolution of web technologies and promotion of these technologies in mo
   \label{fig:3.3}
 \end{figure}
 
-The structure in figure \ref{fig:3.3} shows that the client side has the full control of view rendering and data consumption after data acquisition through web services which is released by back-end with promised protocol. All rendering tasks were stripped off from the server side, which means that the server side achieves more efficiency and concentrate more on the core business logics.
+The structure in figure \ref{fig:3.3} shows that the client side has the full control of view rendering and data consumption after data acquisition through web services which is released by back-end with promised protocol. All rendering tasks were stripped off from the server side, which means that the server side achieves more efficiency and concentrate more on the core business logics\cite{brandon2008software}.
 
 But more responsibility in front-end means more complexity. How to reduce the complexity and increase the maintainability of a front-end project becomes a significant problem. Developers come up with a new evolved variant of SPA as demonstrated in figure \ref{fig:3.4}.
 
@@ -58,7 +58,7 @@ But more responsibility in front-end means more complexity. How to reduce the co
   \label{fig:3.4}
 \end{figure}
 
-In general, the architecture is componentized and layered into the template, controller and model. Each component is isolated and has its own view as well as correlated logics. Front-end frameworks like EmberJS, AngularJS, ReactJS are providing such an approach and development pattern for developers to build modern web apps. With this approach, a giant and complex front-end app is broken up into fine grained components, therefore, components are easy to reuse if the components are well abstracted in a proper way. In addition, the maintenance of each component is also effortless.
+In general, the architecture is componentized and layered into the template, controller and model. Each component is isolated and has its own view as well as correlated logics. Front-end frameworks like Ember.JS, Angular.JS, React.JS are providing such an approach and development pattern for developers to build modern web apps. With this approach, a giant and complex front-end app is broken up into fine grained components, therefore, components are easy to reuse if the components are well abstracted in a proper way. In addition, the maintenance of each component is also effortless.
 
 
 \subsubsection{Trade-off}
@@ -84,7 +84,7 @@ But SPA also has its deficiencies:
 \end{enumerate}
 
 
-\subsection{RESTful Web Service}
+\subsection{RESTful Web Service} \label{sec:tech-rest}
 REST stands for REpresentational State Transfer. More than a decade after it was introduced, REST has become one of the most essential technologies for Web applications\cite{richardson2008restful}. REST is web standards based architecture which uses the HTTP Protocol for data communication. It  centers upon resource  and a resource is accessed by a uniform interface using HTTP standard methods.
 
 In REST architecture, a REST Server simply provides access as well as operations of resources, while a  REST client accesses and manipulates the resources by using different methods. Here URIs are used to locate the resources.
@@ -99,7 +99,7 @@ The key principles, which make RESTful applications to be lean and fast, are lis
 
   \item \textbf{Self-descriptive messages}:  Resources are decoupled from their representation. As a result, the content of the resource can be accessed in a variety of formats, such as HTML, plain text, JSON, and others.
 
-  \item \textbf{Stateful interactions through hyperlinks}:  Every interaction with a resource is stateless. However, several techniques are able to be applied to achieve the exchange of state, such as URI rewriting, cookies, and hidden form fields. State can be embedded in response messages to point to valid future states of the interaction\cite{richardson2008restful}. 
+  \item \textbf{Stateful interactions through hyperlinks}:  Every interaction with a resource is stateless. However, several techniques are able to be applied to achieve the exchange of state, such as URI rewriting, cookies, and hidden form fields. State can be embedded in response messages to point to valid future states of the interaction\cite{tutorial6oracle}. 
 
 
 \end{itemize}

@@ -28,7 +28,7 @@ Figure \ref{fig:eval-perf} illustrates the results of the test. As a result, two
 
 %\subsection{Analysis of Result }
 
-\textbf{Rendering performance is approximately linear to the amount of components}. As shown in the figure \ref{fig:eval-pref}, the total time, which includes scripting time, rendering time and painting time is about 1000 ms when the amount of components is $1\times 10^{4}$. If the amount of Components reaches $5\times 10^{4}$, the total time increases to nearly 5000 ms.
+\textbf{Rendering performance is approximately linear to the amount of components}. As shown in the figure \ref{fig:eval-perf}, the total time, which includes scripting time, rendering time and painting time is about 1000 ms when the amount of components is $1\times 10^{4}$. If the amount of Components reaches $5\times 10^{4}$, the total time increases to nearly 5000 ms.
 
 \textbf{Scripting time has accounted for the majority of total time}. As a part of total time, the scripting time , which is also approximately linear, takes the most of time consumption while processing the rendering task. After the objectified Canvas has loaded the image data successfully, it will parse each component defined in the image data and instantiate them as well as add the objects into its own context. However, the actual rendering time, which is the difference of total time and scripting time, is only a fraction in the whole rendering process.
 

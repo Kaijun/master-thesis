@@ -72,7 +72,7 @@ Domain                    & Field           & Description                       
 
 \subsection{RESTful API Definitions}
 
-As mentioned in section xxx, RESTful architecture is a an excellent technical choice for data transferring. Because of its simplicity and clear semantic description of HTTP methods comparing to other protocols such like SOAP, it will dramatically simplify and clarify our data transmission services. 
+As mentioned in section \ref{sec:tech-rest}, RESTful architecture is a an excellent technical choice for data transferring. Because of its simplicity and clear semantic description of HTTP methods comparing to other protocols such like SOAP, it will dramatically simplify and clarify our data transmission services\cite{fielding2002principled}. 
 
 \subsubsection{ Mapping of HTTP methods to data model behavior}
 The data model defined above can directly map to the definition of resources in RESTful. The HTTP methods on each resource domain can also represent the data model behaviors, \textbf{\textit{User Model}} is taken as an example: 
@@ -90,7 +90,7 @@ DELETE        & {Delete a specific user in the user model collection.}          
 \label{table:http-method-on-user-resource}
 \end{table}
 
-In table \ref{table:http-method-on-user-resource}, resource entry in persistent storage can be executed with specific action while requesting resource URI through different HTTP methods. A semantic description of connection between \gls{CRUD} and HTTP methods on RESTful will make the data transmission services more understandable and unified.
+In table \ref{table:http-method-on-user-resource}, resource entry in persistent storage can be executed with specific action while requesting resource URI through different HTTP methods. A semantic description of connection between \gls{CRUD} and HTTP methods on RESTful will make the data transmission services more understandable and unified\cite{brandon2008software}.
 
 \subsubsection{ General RESTful API Definitions }
 
@@ -131,7 +131,7 @@ URI                 & Method         & Description                              
 \end{table}
 
 \item
-\textbf{Questions}: in a real sense question resource is attached to the course resource. According to the best practice of RESTful API design [reference xxx], question resource could be touched under course URI, \textit{/courses/:courseId/questions/:questionId}. But in the real world, question resource has its own collection, and \textit{questionId} is the unique identifier, through which a specific question entry could be selected without using  
+\textbf{Questions}: in a real sense question resource is attached to the course resource. According to the best practice of RESTful API design\cite{bestPracticeRest}, question resource could be touched under course URI, \textit{/courses/:courseId/questions/:questionId}. But in the real world, question resource has its own collection, and \textit{questionId} is the unique identifier, through which a specific question entry could be selected without using  
 \textit{courseId}. So an optimized conception is simply using \textit{/questions} as URI instead. And pass \textit{courseId} as a query parameter while requesting collection of question entries under a specific course. 
 \begin{table}[!htbp]
 \centering

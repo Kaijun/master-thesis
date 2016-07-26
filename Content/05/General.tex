@@ -117,16 +117,17 @@ Webpack also helps accelerate the building process by defining various automated
 \end{figure}
 % Building Process, a->b->c->d xuxian kuang, Webpack compile, bundle, compress -> copy file to dist -> ready for deploy
 
+
 \subsection{Storage Structure} \label{subsec:storage-structure-imp}
 In section \ref{sec:data-concept}, data domains and fields of data domains  have already been defined. 
 
-For all data persistence storage on the server side a MongoDB\footnote{https://www.mongodb.com/ - accessed 13 July 2016} database is used.  In figure \ref{fig:data-model-table-imp}, more concrete definition of the data table model is defined. MongoDB is a non-SQL database, which uses document oriented storage and JSON style data model. That will make it easy to implement as well as scale data models. In addition, An \gls{ORM} framework called Mongoose\footnote{http://mongoosejs.com/ - accessed 13 July 2016} is also applied to the implementation, which encapsulates the native database operations of MongoDB. With the help of the \gls{ORM} framework, definition of schema and query on database will be quite simple. 
+For all data persistence storage on the server side a MongoDB\footnote{https://www.mongodb.com/ - accessed 13 July 2016} database is used.  MongoDB is a non-SQL database, which uses document oriented storage and JSON style data model\cite{banker2011mongodb}. That will make it easy to implement as well as scale data models. In addition, An \gls{ORM} framework called Mongoose\footnote{http://mongoosejs.com/ - accessed 13 July 2016} is also applied to the implementation, which encapsulates the native database operations of MongoDB\cite{mardan2014boosting}. With the help of the \gls{ORM} framework, definition of schema and query on database will be quite simple. In figure \ref{fig:data-model-table-imp}, the more concrete the data models and their relationships are defined.
 
 % Description othe the table?
 
 \begin{figure}[!htbp]
   \centering
-    \includegraphics[width=1\textwidth]{Figures/concept-data-domain-relation.pdf}
+    \includegraphics[width=1\textwidth]{Figures/imp-data-model-table.pdf}
   \caption{Table of data model}
   \label{fig:data-model-table-imp}
 \end{figure}
